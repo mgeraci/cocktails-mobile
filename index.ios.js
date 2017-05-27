@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 
+import { COLORS } from "./src/util/style_consts";
 import Recipe from "./src/Recipe";
 
 export default class CocktailsMobile extends Component {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: COLORS.purple,
   },
 });
 

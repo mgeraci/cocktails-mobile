@@ -2,21 +2,22 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
   View
 } from 'react-native';
 
 import { TestRecipe } from "./util/consts";
+import { COLORS, TextStyle } from "./util/style_consts";
+import { CocktailText as Text } from "./CocktailText";
 import Ingredient from "./Ingredient";
 
 class Recipe extends Component {
 	render() {
 		return (
 			<View style={styles.wrapper}>
-				<Text>
+				<Text style={[TextStyle.TextStyle, styles.title]}>
 					{TestRecipe.title}
 				</Text>
-				<Text>
+				<Text style={[TextStyle.TextStyle, styles.byline]}>
 					by {TestRecipe.source.name}
 				</Text>
 
@@ -38,6 +39,13 @@ class Recipe extends Component {
 
 const styles = StyleSheet.create({
 	wrapper: {
+	},
+	title: {
+		fontSize: 20,
+		textAlign: "center",
+	},
+	byline: {
+		textAlign: "center",
 	},
 	decoration: {
 		marginTop: 20,
