@@ -65,3 +65,118 @@ export const TestRecipe = {
 	directions: "Shake the gin, juice, syrup, and mint with ice. Open the shaker and add the club soda. Strain with a julep strainer.",
 	glass: "cocktail",
 }
+
+export const RECIPES = [
+	{
+		name: "South Side",
+		slug: "south-side",
+	},
+	{
+		name: "Aviation",
+		slug: "aviation",
+	},
+	{
+		name: "White Lady",
+		slug: "white-lady",
+	},
+	{
+		name: "Martinez",
+		slug: "martinez",
+	},
+	{
+		name: "20th Century",
+		slug: "20th-century",
+	},
+	{
+		name: "Amelia",
+		slug: "amelia",
+	},
+	{
+		name: "Bee's Knees",
+		slug: "bees-knees",
+	},
+	{
+		name: "Champagne Cocktail",
+		slug: "champagne-cocktail",
+	},
+	{
+		name: "Gin on Gin Julep",
+		slug: "gin-on-gin-julep",
+	},
+	{
+		name: "Greenwich Sour",
+		slug: "greenwhich-sour",
+	},
+	{
+		name: "Mai Tai",
+		slug: "mai-tai",
+	},
+	{
+		name: "Jack Rose",
+		slug: "jack-rose",
+	},
+	{
+		name: "Mint Julep",
+		slug: "mint-julep",
+	},
+	{
+		name: "Persephone",
+		slug: "persephone",
+	},
+	{
+		name: "South Side",
+		slug: "south-side",
+	},
+	{
+		name: "Aviation",
+		slug: "aviation",
+	},
+	{
+		name: "White Lady",
+		slug: "white-lady",
+	},
+	{
+		name: "Martinez",
+		slug: "martinez",
+	},
+	{
+		name: "20th Century",
+		slug: "20th-century",
+	},
+	{
+		name: "Amelia",
+		slug: "amelia",
+	},
+	{
+		name: "Bee's Knees",
+		slug: "bees-knees",
+	},
+	{
+		name: "Champagne Cocktail",
+		slug: "champagne-cocktail",
+	},
+	{
+		name: "Gin on Gin Julep",
+		slug: "gin-on-gin-julep",
+	},
+	{
+		name: "Greenwich Sour",
+		slug: "greenwhich-sour",
+	},
+	{
+		name: "Mai Tai",
+		slug: "mai-tai",
+	},
+	{
+		name: "Jack Rose",
+		slug: "jack-rose",
+	},
+	{
+		name: "Mint Julep",
+		slug: "mint-julep",
+	},
+	{
+		name: "Persephone",
+		slug: "persephone",
+	},
+];

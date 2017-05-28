@@ -7,8 +7,12 @@ export const COLORS = {
 	tan: "#bf9f6b",
 }
 
-export const TextStyle = StyleSheet.create({
+export const STYLES = StyleSheet.create({
 	TextStyle: {
 		color: COLORS.tan,
+	},
+	TitleStyle: {
+		fontSize: 22,
+		marginBottom: 30,
 	},
 });

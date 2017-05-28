@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
-  AppRegistry,
   StyleSheet,
   View
-} from 'react-native';
+} from "react-native";
 
 import { TestRecipe } from "./util/consts";
-import { COLORS, TextStyle } from "./util/style_consts";
+import { COLORS, STYLES } from "./util/style_consts";
 import { CocktailText as Text } from "./CocktailText";
 import Ingredient from "./Ingredient";
 
@@ -14,10 +13,10 @@ class Recipe extends Component {
 	render() {
 		return (
 			<View style={styles.wrapper}>
-				<Text style={[TextStyle.TextStyle, styles.title]}>
+				<Text style={[STYLES.TextStyle, styles.title]}>
 					{TestRecipe.title}
 				</Text>
-				<Text style={[TextStyle.TextStyle, styles.byline]}>
+				<Text style={[STYLES.TextStyle, styles.byline]}>
 					by {TestRecipe.source.name}
 				</Text>
 
@@ -39,6 +38,7 @@ class Recipe extends Component {
 
 const styles = StyleSheet.create({
 	wrapper: {
+		padding: 20,
 	},
 	title: {
 		fontSize: 20,
