@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  View
+	View,
+	StatusBar,
 } from 'react-native';
 
 import { COLORS } from "./src/util/style_consts";
@@ -33,6 +34,7 @@ export default class CocktailsMobile extends Component {
 
     return (
       <View style={styles.container}>
+				<StatusBar hidden />
 				{activeRecipe &&
 					<Recipe />
 				}

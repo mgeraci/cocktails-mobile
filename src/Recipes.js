@@ -28,12 +28,13 @@ class Recipes extends Component {
 
     return (
 			<View>
-				<Text style={STYLES.TitleStyle}>
-					Recipes
-				</Text>
-
 				<ListView
 					dataSource={dataSource}
+					renderHeader={() =>
+						<Text style={STYLES.TitleStyle}>
+							Recipes
+						</Text>
+					}
 					renderRow={(rowData) =>
 						<RecipesItem
 							onPickRecipe={onPickRecipe}
