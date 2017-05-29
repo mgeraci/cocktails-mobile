@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import { RECIPES } from "./util/consts";
-import { STYLES } from "./util/style_consts";
+import { STYLES, APP_PADDING } from "./util/style_consts";
 import { CocktailText as Text } from "./CocktailText";
 import RecipesItem from "./RecipesItem";
 
@@ -41,6 +41,7 @@ class Recipes extends Component {
 							recipe={rowData}
 						/>
 					}
+					style={styles}
 				/>
 			</View>
     );
@@ -49,6 +50,11 @@ class Recipes extends Component {
 
 Recipes.propTypes = {
 	onPickRecipe: PropTypes.func.isRequired,
+};
+
+const styles = {
+	paddingLeft: APP_PADDING,
+	paddingRight: APP_PADDING,
 };
 
 export default Recipes;

@@ -7,6 +7,8 @@ export const COLORS = {
 	tan: "#bf9f6b",
 }
 
+export const APP_PADDING = 18;
+
 export const STYLES = StyleSheet.create({
 	TextStyle: {
 		color: COLORS.tan,
