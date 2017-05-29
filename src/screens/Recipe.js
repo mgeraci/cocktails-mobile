@@ -4,12 +4,22 @@ import {
   View
 } from "react-native";
 
-import { TestRecipe } from "./util/consts";
-import { COLORS, STYLES } from "./util/style_consts";
-import { CocktailText as Text } from "./CocktailText";
-import Ingredient from "./Ingredient";
+import { TestRecipe, NAVIGATOR_STYLES } from "../util/consts";
+import {
+	COLORS,
+	STYLES,
+	APP_PADDING,
+} from "../util/style_consts";
+import { CocktailText as Text } from "../components/CocktailText";
+import Ingredient from "../components/Ingredient";
 
 class Recipe extends Component {
+	static navigatorStyle = NAVIGATOR_STYLES;
+
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		return (
 			<View style={styles.wrapper}>
@@ -38,7 +48,9 @@ class Recipe extends Component {
 
 const styles = StyleSheet.create({
 	wrapper: {
-		padding: 20,
+		flex: 1,
+		padding: APP_PADDING,
+		backgroundColor: COLORS.purple
 	},
 	title: {
 		fontSize: 20,

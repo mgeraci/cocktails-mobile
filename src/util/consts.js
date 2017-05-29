@@ -1,3 +1,8 @@
+export const NAVIGATOR_STYLES = {
+	navBarHidden: true,
+	statusBarHidden: true,
+};
+
 export const TestRecipe = {
 	title: "South Side",
 	slug: "south-side",
