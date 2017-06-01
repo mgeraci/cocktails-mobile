@@ -8,7 +8,7 @@ import {
 
 import {
 	RECIPES,
-	NAVIGATOR_STYLES,
+	NAVIGATOR_SETTINGS,
 } from "../util/consts";
 import {
 	STYLES,
@@ -19,7 +19,7 @@ import { CocktailText as Text } from "../components/CocktailText";
 import RecipesItem from "../components/RecipesItem";
 
 class Recipes extends Component {
-	static navigatorStyle = NAVIGATOR_STYLES;
+	static navigatorStyle = NAVIGATOR_SETTINGS;
 
   constructor(props) {
     super(props);

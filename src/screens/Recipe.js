@@ -4,7 +4,7 @@ import {
   View
 } from "react-native";
 
-import { TestRecipe, NAVIGATOR_STYLES } from "../util/consts";
+import { TestRecipe, NAVIGATOR_SETTINGS } from "../util/consts";
 import {
 	COLORS,
 	STYLES,
@@ -14,7 +14,7 @@ import { CocktailText as Text } from "../components/CocktailText";
 import Ingredient from "../components/Ingredient";
 
 class Recipe extends Component {
-	static navigatorStyle = NAVIGATOR_STYLES;
+	static navigatorStyle = NAVIGATOR_SETTINGS;
 
 	constructor(props) {
 		super(props);

@@ -1,4 +1,4 @@
-export const NAVIGATOR_STYLES = {
+export const NAVIGATOR_SETTINGS = {
 	navBarHidden: true,
 	statusBarHidden: true,
 };
