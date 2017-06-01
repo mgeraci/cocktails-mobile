@@ -12,6 +12,7 @@ export const APP_PADDING = 18;
 export const STYLES = StyleSheet.create({
 	TextStyle: {
 		color: COLORS.tan,
+		fontFamily: "AvenirLTStd-Roman",
 	},
 	TitleStyle: {
 		fontSize: 22,

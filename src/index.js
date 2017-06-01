@@ -18,25 +18,38 @@ const tabs = [
 		label: "Recipes",
 		title: "Recipes",
 		screen: "cocktails.Recipes",
-		// icon: require("../img/list.png"),
-	}, {
+		// icon: require("./images/recipes.png"),
+		// selectedIcon: "",
+	},
+	{
 		label: "Ingredients",
 		title: "Ingredients",
 		screen: "cocktails.Recipes",
-		// icon: require("../img/swap.png"),
-	}
+		// icon: require("./images/ingredients.svg"),
+		// selectedIcon: "",
+	},
+	{
+		label: "Sources",
+		title: "Sources",
+		screen: "cocktails.Recipes",
+		// icon: require("./images/sources.svg"),
+		// selectedIcon: "",
+	},
+	{
+		label: "Search",
+		title: "Search",
+		screen: "cocktails.Recipes",
+		// icon: require("./images/search.svg"),
+		// selectedIcon: "",
+	},
 ];
 
 Navigation.startTabBasedApp({
 	tabs,
 	tabsStyle: {
 		tabBarBackgroundColor: COLORS.purple,
-		navBarButtonColor: "#ffffff",
-		tabBarButtonColor: "#ffffff",
-		navBarTextColor: "#ffffff",
-		tabBarSelectedButtonColor: "#ff505c",
-		navigationBarColor: "#003a66",
-		navBarBackgroundColor: "#003a66",
-		tabFontFamily: "BioRhyme-Bold",
+		tabBarButtonColor: COLORS.tan,
+		tabBarSelectedButtonColor: COLORS.brown,
+		// tabFontFamily: "BioRhyme-Bold",
 	},
 });
