@@ -13,6 +13,9 @@ import {
 import { CocktailText as Text } from "../components/CocktailText";
 import Ingredient from "../components/Ingredient";
 
+import { FONT_ICON_MAP } from "../util/consts";
+import { createIconSet } from "react-native-vector-icons";
+
 class Recipe extends Component {
 	static navigatorStyle = NAVIGATOR_SETTINGS;
 
@@ -21,8 +24,11 @@ class Recipe extends Component {
 	}
 
 	render() {
+		const Icon = createIconSet(FONT_ICON_MAP, "cocktails-icons");
+
 		return (
 			<View style={styles.wrapper}>
+				<Icon name="recipes" size={30} color="#f00" />
 				<Text style={[STYLES.TextStyle, styles.title]}>
 					{TestRecipe.title}
 				</Text>

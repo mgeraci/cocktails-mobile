@@ -3,6 +3,13 @@ export const NAVIGATOR_SETTINGS = {
 	statusBarHidden: true,
 };
 
+export const FONT_ICON_MAP = {
+	recipes: "a",
+	ingrdients: "b",
+	sources: "c",
+	search: "d",
+};
+
 export const TestRecipe = {
 	title: "South Side",
 	slug: "south-side",
