@@ -11,6 +11,7 @@ export const FONT_ICON_MAP = {
 };
 
 export const FONT_FAMILY = "AvenirLTStd-Roman";
+export const FONT_FAMILY_LIGHT = "AvenirLTStd-Light";
 
 export const FRACTIONS = {
 	1: {

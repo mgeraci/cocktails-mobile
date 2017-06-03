@@ -16,7 +16,7 @@ const RecipeQuantity = (props) => {
 		<View style={styles.wrapper}>
 			<TouchableHighlight
 				onPress={onDecrement}
-				style={styles.buttonWrapper}
+				style={[styles.buttonWrapper, styles.buttonWrapperLeft]}
 			>
 				<View>
 					<Text style={[styles.button, styles.buttonLeft]}>
@@ -31,10 +31,10 @@ const RecipeQuantity = (props) => {
 
 			<TouchableHighlight
 				onPress={onIncrement}
-				style={styles.buttonWrapper}
+				style={[styles.buttonWrapper, styles.buttonWrapperRight]}
 			>
 				<View>
-					<Text style={[styles.button, styles.buttonRight]}>
+					<Text style={styles.button}>
 						+
 					</Text>
 				</View>

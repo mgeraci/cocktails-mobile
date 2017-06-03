@@ -1,19 +1,33 @@
 import { COLORS } from "../util/style_consts";
+import { FONT_FAMILY_LIGHT } from "../util/consts";
 
 const buttonSize = 50;
-const fontSize = 20;
-const br = 3;
+const fontSize = 26;
+const lineHeight = buttonSize * 1.1;
+const br = 5;
 
 const styles = {
 	wrapper: {
 		flex: 1,
+		flexDirection: "row",
 	},
 
 	buttonWrapper: {
 		width: buttonSize,
 		height: buttonSize,
+
 		backgroundColor: COLORS.brown,
-		borderRadius: 100,
+		overflow: "hidden",
+	},
+
+	buttonWrapperLeft: {
+		borderTopLeftRadius: br,
+		borderBottomLeftRadius: br,
+	},
+
+	buttonWrapperRight: {
+		borderTopRightRadius: br,
+		borderBottomRightRadius: br,
 	},
 
 	button: {
@@ -22,28 +36,24 @@ const styles = {
 
 		textAlign: "center",
 		fontSize,
-		lineHeight: buttonSize,
+		fontFamily: FONT_FAMILY_LIGHT,
+		lineHeight,
 		color: COLORS.purple,
 	},
 
 	buttonLeft: {
-		borderTopLeftRadius: br,
-		borderBottomLeftRadius: br,
-	},
-
-	buttonRight: {
-		borderTopRightRadius: br,
-		borderBottomRightRadius: br,
+		lineHeight: lineHeight * 0.95,
 	},
 
 	quantity: {
-		width: buttonSize * 1.3,
+		width: buttonSize * 1.2,
 		height: buttonSize,
 		backgroundColor: COLORS.tan,
 
 		textAlign: "center",
 		fontSize,
-		lineHeight: buttonSize,
+		fontFamily: FONT_FAMILY_LIGHT,
+		lineHeight,
 		color: COLORS.purple,
 	},
 };
