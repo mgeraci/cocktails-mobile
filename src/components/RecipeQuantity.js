@@ -7,24 +7,34 @@ import {
 
 import { CocktailText as Text } from "../components/CocktailText";
 
+import styles from "./RecipeQuantity.css.js";
+
 const RecipeQuantity = (props) => {
 	const { quantity, onDecrement, onIncrement } = props;
 
 	return (
-		<View>
-			<TouchableHighlight onPress={onDecrement}>
+		<View style={styles.wrapper}>
+			<TouchableHighlight
+				onPress={onDecrement}
+				style={styles.buttonWrapper}
+			>
 				<View>
-					<Text>
+					<Text style={[styles.button, styles.buttonLeft]}>
 						-
 					</Text>
 				</View>
 			</TouchableHighlight>
-			<Text>
+
+			<Text style={styles.quantity}>
 				{quantity}
 			</Text>
-			<TouchableHighlight onPress={onIncrement}>
+
+			<TouchableHighlight
+				onPress={onIncrement}
+				style={styles.buttonWrapper}
+			>
 				<View>
-					<Text>
+					<Text style={[styles.button, styles.buttonRight]}>
 						+
 					</Text>
 				</View>
