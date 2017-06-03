@@ -9,6 +9,8 @@ import {
 import { FRACTIONS } from "../util/consts";
 import { CocktailText as Text } from "./CocktailText";
 
+import styles from "./Ingredient.css.js";
+
 const fractionLookup = {
 };
 
@@ -47,8 +49,8 @@ const Ingredient = (props) => {
 	}
 
 	return (
-		<View>
-			<Text>
+		<View style={styles.wrapper}>
+			<Text style={styles.text}>
 				{formatAmount(currentFraction)}
 				{" "}
 				{currentUnit}

@@ -1,9 +1,11 @@
-import { COLORS } from "../util/style_consts";
-import { FONT_FAMILY_LIGHT } from "../util/consts";
+import {
+	COLORS,
+	FONT_FAMILY_LIGHT,
+	QUANTITY_BUTTON_SIZE,
+} from "../util/style_consts";
 
-const buttonSize = 50;
 const fontSize = 26;
-const lineHeight = buttonSize * 1.1;
+const lineHeight = QUANTITY_BUTTON_SIZE * 1.1;
 const br = 5;
 
 const styles = {
@@ -13,8 +15,8 @@ const styles = {
 	},
 
 	buttonWrapper: {
-		width: buttonSize,
-		height: buttonSize,
+		width: QUANTITY_BUTTON_SIZE,
+		height: QUANTITY_BUTTON_SIZE,
 
 		backgroundColor: COLORS.brown,
 		overflow: "hidden",
@@ -31,8 +33,8 @@ const styles = {
 	},
 
 	button: {
-		width: buttonSize,
-		height: buttonSize,
+		width: QUANTITY_BUTTON_SIZE,
+		height: QUANTITY_BUTTON_SIZE,
 
 		textAlign: "center",
 		fontSize,
@@ -46,8 +48,8 @@ const styles = {
 	},
 
 	quantity: {
-		width: buttonSize * 1.2,
-		height: buttonSize,
+		width: QUANTITY_BUTTON_SIZE * 1.2,
+		height: QUANTITY_BUTTON_SIZE,
 		backgroundColor: COLORS.tan,
 
 		textAlign: "center",

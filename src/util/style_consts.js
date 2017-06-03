@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { FONT_FAMILY } from "./consts";
+
+export const FONT_FAMILY = "AvenirLTStd-Roman";
+export const FONT_FAMILY_LIGHT = "AvenirLTStd-Light";
 
 export const COLORS = {
 	purple: "#4a3d4c",
@@ -8,7 +10,9 @@ export const COLORS = {
 	tan: "#bf9f6b",
 }
 
-export const APP_PADDING = 18;
+export const APP_PADDING = 20;
+
+export const QUANTITY_BUTTON_SIZE = 50;
 
 export const STYLES = StyleSheet.create({
 	TextStyle: {

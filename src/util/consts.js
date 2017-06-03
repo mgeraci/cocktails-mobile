@@ -10,9 +10,6 @@ export const FONT_ICON_MAP = {
 	search: "d",
 };
 
-export const FONT_FAMILY = "AvenirLTStd-Roman";
-export const FONT_FAMILY_LIGHT = "AvenirLTStd-Light";
-
 export const FRACTIONS = {
 	1: {
 		2: "½",

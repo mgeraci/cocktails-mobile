@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 import {
-  StyleSheet,
   View,
 	TouchableHighlight,
 } from "react-native";
 
 import { TestRecipe, NAVIGATOR_SETTINGS } from "../util/consts";
-import {
-	COLORS,
-	STYLES,
-	APP_PADDING,
-} from "../util/style_consts";
 
 import { CocktailText as Text } from "../components/CocktailText";
 import Ingredient from "../components/Ingredient";
 import RecipeQuantity from "../components/RecipeQuantity";
+
+import styles from "./Recipe.css.js";
 
 class Recipe extends Component {
 	static navigatorStyle = NAVIGATOR_SETTINGS;
@@ -48,10 +44,10 @@ class Recipe extends Component {
 
 		return (
 			<View style={styles.wrapper}>
-				<Text style={[STYLES.TextStyle, styles.title]}>
+				<Text style={styles.title}>
 					{TestRecipe.title}
 				</Text>
-				<Text style={[STYLES.TextStyle, styles.byline]}>
+				<Text style={styles.source}>
 					by {TestRecipe.source.name}
 				</Text>
 
@@ -71,41 +67,21 @@ class Recipe extends Component {
 					{TestRecipe.directions}
 				</Text>
 
-				<RecipeQuantity
-					quantity={quantity}
-					onDecrement={this._decrement}
-					onIncrement={this._increment}
-				/>
+				<View style={styles.bottomWrapper}>
+					<View style={styles.bottomWrapperInner}>
+						<RecipeQuantity
+							quantity={quantity}
+							onDecrement={this._decrement}
+							onIncrement={this._increment}
+						/>
+						<Text style={styles.bottomLabel}>
+							Quantity
+						</Text>
+					</View>
+				</View>
 			</View>
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	wrapper: {
-		flex: 1,
-		padding: APP_PADDING,
-		backgroundColor: COLORS.purple
-	},
-	title: {
-		fontSize: 20,
-		textAlign: "center",
-	},
-	byline: {
-		textAlign: "center",
-	},
-	decoration: {
-		marginTop: 20,
-		width: 40,
-		height: 40,
-		backgroundColor: "lightgray",
-	},
-	ingredients: {
-		marginTop: 20,
-	},
-	directions: {
-		marginTop: 20,
-	}
-});
 
 export default Recipe;
