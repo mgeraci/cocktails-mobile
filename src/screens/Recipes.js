@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {
 	View,
 	ListView,
-	Button,
 } from 'react-native';
 
 import {

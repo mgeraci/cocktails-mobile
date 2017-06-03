@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {
   StyleSheet,
-  View
+  View,
+	TouchableHighlight,
 } from "react-native";
 
 import { TestRecipe, NAVIGATOR_SETTINGS } from "../util/consts";
@@ -10,25 +11,43 @@ import {
 	STYLES,
 	APP_PADDING,
 } from "../util/style_consts";
+
 import { CocktailText as Text } from "../components/CocktailText";
 import Ingredient from "../components/Ingredient";
-
-import { FONT_ICON_MAP } from "../util/consts";
-import { createIconSet } from "react-native-vector-icons";
+import RecipeQuantity from "../components/RecipeQuantity";
 
 class Recipe extends Component {
 	static navigatorStyle = NAVIGATOR_SETTINGS;
 
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			quantity: 1,
+		};
+	}
+
+	_increment = () => {
+		const { quantity } = this.state;
+
+		this.setState({ quantity: quantity + 1 });
+	}
+
+	_decrement = () => {
+		const { quantity } = this.state;
+
+		if (quantity <= 1) {
+			this.setState({ quantity: 1 });
+		} else {
+			this.setState({ quantity: quantity - 1 });
+		}
 	}
 
 	render() {
-		const Icon = createIconSet(FONT_ICON_MAP, "cocktails-icons");
+		const { quantity } = this.state;
 
 		return (
 			<View style={styles.wrapper}>
-				<Icon name="recipes" size={30} color="#f00" />
 				<Text style={[STYLES.TextStyle, styles.title]}>
 					{TestRecipe.title}
 				</Text>
@@ -47,6 +66,12 @@ class Recipe extends Component {
 				<Text style={styles.directions}>
 					{TestRecipe.directions}
 				</Text>
+
+				<RecipeQuantity
+					quantity={quantity}
+					onDecrement={this._decrement}
+					onIncrement={this._increment}
+				/>
 			</View>
 		);
 	}
