@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { FONT_FAMILY } from "./consts";
 
 export const COLORS = {
 	purple: "#4a3d4c",
@@ -12,7 +13,7 @@ export const APP_PADDING = 18;
 export const STYLES = StyleSheet.create({
 	TextStyle: {
 		color: COLORS.tan,
-		fontFamily: "AvenirLTStd-Roman",
+		fontFamily: FONT_FAMILY,
 	},
 	TitleStyle: {
 		fontSize: 22,

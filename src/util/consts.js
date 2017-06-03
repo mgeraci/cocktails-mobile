@@ -5,10 +5,12 @@ export const NAVIGATOR_SETTINGS = {
 
 export const FONT_ICON_MAP = {
 	recipes: "a",
-	ingrdients: "b",
+	ingredients: "b",
 	sources: "c",
 	search: "d",
 };
+
+export const FONT_FAMILY = "AvenirLTStd-Roman";
 
 export const TestRecipe = {
 	title: "South Side",
