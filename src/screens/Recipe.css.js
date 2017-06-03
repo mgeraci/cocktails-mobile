@@ -31,7 +31,7 @@ export default {
 		width: 70,
 		height: 50,
 		alignSelf: "center",
-		backgroundColor: "lightgray",
+		backgroundColor: "rgba(0,0,0,0.2)",
 	},
 
 	ingredients: {
@@ -48,10 +48,13 @@ export default {
 
 	bottomWrapper: {
 		flex: 1,
+		flexDirection: "row",
+		justifyContent: "center",
 	},
 
 	bottomWrapperInner: {
 		flexDirection: "column",
+		justifyContent: "space-between",
 		width: QUANTITY_BUTTON_SIZE * 2 + QUANTITY_BUTTON_SIZE * 1.2,
 		height: QUANTITY_BUTTON_SIZE * 1.75,
 	},
@@ -61,5 +64,17 @@ export default {
 		lineHeight: 26,
 		fontFamily: FONT_FAMILY_LIGHT,
 		alignSelf: "center",
-	}
+	},
+
+	glassWrapper: {
+		width: QUANTITY_BUTTON_SIZE * 2,
+		marginLeft: 45,
+	},
+
+	glass: {
+		width: QUANTITY_BUTTON_SIZE,
+		height: QUANTITY_BUTTON_SIZE,
+		backgroundColor: "rgba(0,0,0,0.2)",
+		alignSelf: "center",
+	},
 };

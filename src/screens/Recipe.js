@@ -5,6 +5,7 @@ import {
 } from "react-native";
 
 import { TestRecipe, NAVIGATOR_SETTINGS } from "../util/consts";
+import { capitalize } from "../util/helpers";
 
 import { CocktailText as Text } from "../components/CocktailText";
 import Ingredient from "../components/Ingredient";
@@ -76,6 +77,13 @@ class Recipe extends Component {
 						/>
 						<Text style={styles.bottomLabel}>
 							Quantity
+						</Text>
+					</View>
+
+					<View style={[styles.bottomWrapperInner, styles.glassWrapper]}>
+						<View style={styles.glass} />
+						<Text style={styles.bottomLabel}>
+							{capitalize(`${TestRecipe.glass} glass`)}
 						</Text>
 					</View>
 				</View>
