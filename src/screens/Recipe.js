@@ -59,7 +59,11 @@ class Recipe extends Component {
 
 				<View style={styles.ingredients}>
 					{TestRecipe.ingredients.map((ingredient, i) =>
-						<Ingredient key={i} ingredient={ingredient} />
+						<Ingredient
+							key={i}
+							ingredient={ingredient}
+							quantity={quantity}
+						/>
 					)}
 				</View>
 
