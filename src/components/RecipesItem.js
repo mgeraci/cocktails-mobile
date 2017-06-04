@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import {
 	TouchableHighlight,
 	View,
-	StyleSheet,
 } from 'react-native';
 
 import { COLORS } from "../util/style_consts";
 import { CocktailText as Text } from "./CocktailText";
+
+import styles from "./RecipesItem.css.js";
 
 const RecipesItem = (props) => {
 	const { recipe, onPickRecipe } = props;
@@ -33,12 +34,5 @@ RecipesItem.propTypes = {
 	recipe: PropTypes.object.isRequired,
 	onPickRecipe: PropTypes.func.isRequired,
 };
-
-const styles = StyleSheet.create({
-	button: {
-		paddingTop: 4,
-		paddingBottom: 4,
-	},
-});
 
 export default RecipesItem;

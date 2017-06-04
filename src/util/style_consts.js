@@ -20,7 +20,8 @@ export const STYLES = StyleSheet.create({
 		fontFamily: FONT_FAMILY,
 	},
 	TitleStyle: {
-		fontSize: 22,
-		marginBottom: 30,
+		fontSize: 28,
+		fontFamily: FONT_FAMILY,
+		marginBottom: 32,
 	},
 });
