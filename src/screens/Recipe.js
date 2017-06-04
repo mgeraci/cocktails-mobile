@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+	ScrollView,
   View,
 	TouchableHighlight,
 } from "react-native";
@@ -44,7 +45,7 @@ class Recipe extends Component {
 		const { quantity } = this.state;
 
 		return (
-			<View style={styles.wrapper}>
+			<ScrollView style={styles.wrapper}>
 				<Text style={styles.title}>
 					{TestRecipe.title}
 				</Text>
@@ -87,7 +88,9 @@ class Recipe extends Component {
 						</Text>
 					</View>
 				</View>
-			</View>
+
+				<View style={{ width: 100, height: 30, }} />
+			</ScrollView>
 		);
 	}
 }
