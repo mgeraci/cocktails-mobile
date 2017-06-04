@@ -49,9 +49,12 @@ class Recipe extends Component {
 				<Text style={styles.title}>
 					{TestRecipe.title}
 				</Text>
-				<Text style={styles.source}>
-					by {TestRecipe.source.name}
-				</Text>
+
+				{TestRecipe.source &&
+					<Text style={styles.source}>
+						by {TestRecipe.source.name}
+					</Text>
+				}
 
 				<View style={styles.decoration} />
 
