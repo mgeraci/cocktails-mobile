@@ -3,6 +3,8 @@ export const NAVIGATOR_SETTINGS = {
 	statusBarHidden: true,
 };
 
+export const STORAGE_KEY = "COCKTAILS_LOCALSTORAGE";
+
 export const FONT_ICON_MAP = {
 	recipes: "a",
 	ingredients: "b",
