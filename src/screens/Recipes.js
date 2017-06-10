@@ -16,32 +16,31 @@ import {
 	COLORS,
 } from "../util/style_consts";
 
-import { getRecipes, setRecipes } from "../util/helpers";
+import { api } from "../util/web";
+import Storage from "../util/storage";
 import { CocktailText as Text } from "../components/CocktailText";
 import RecipesItem from "../components/RecipesItem";
 
 class Recipes extends Component {
 	static navigatorStyle = NAVIGATOR_SETTINGS;
 
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
+		this.state = {
 			dataSource: false,
-    };
-  }
+		};
+	}
 
 	componentDidMount() {
 		this._loadInitialState();
 	}
 
 	async _loadInitialState() {
-		const data = await getRecipes();
-		console.log("in initial state", data);
+		const data = await Storage.getRecipes();
 
 		if (typeof(data) === "undefined" || data === null || !data.length) {
-			console.log("no data found; start request");
-			this._getData();
+			this._fetchData();
 			return;
 		}
 
@@ -50,28 +49,29 @@ class Recipes extends Component {
 			return;
 		}
 
-		console.log("proceed with render", data);
 		this._setDataSource(data);
 	}
 
-	async _getData() {
-    // this will be the api request's location
-		const recipes = [
-			{ name: "foo", slug: "boo" },
-			{ name: "bar", slug: "dar" },
-		];
+	async _fetchData() {
+		let recipes;
+		const data = await api("recipes");
 
-		await setRecipes(recipes);
+		if (data.recipes) {
+			recipes = data.recipes;
 
-		this._setDataSource(recipes);
+			await Storage.setRecipes(recipes);
+			this._setDataSource(recipes);
+		} else {
+			console.log("set error state");
+		}
 	}
 
 	_setDataSource(data) {
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+		const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
-    this.setState({
+		this.setState({
 			dataSource: ds.cloneWithRows(data),
-    });
+		});
 	}
 
 	_onPickRecipe = (recipe) => {
@@ -81,11 +81,11 @@ class Recipes extends Component {
 		});
 	}
 
-  render() {
+	render() {
 		const { onPickRecipe } = this.props;
 		const { dataSource } = this.state;
 
-    return (
+		return (
 			<View style={viewStyles}>
 				{dataSource &&
 					<ListView
@@ -108,8 +108,8 @@ class Recipes extends Component {
 					/>
 				}
 			</View>
-    );
-  }
+		);
+	}
 }
 
 const headerStyles = {
