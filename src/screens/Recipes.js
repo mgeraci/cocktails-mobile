@@ -9,12 +9,14 @@ import {
 	RECIPES,
 	NAVIGATOR_SETTINGS,
 } from "../util/consts";
+
 import {
 	STYLES,
 	APP_PADDING,
 	COLORS,
 } from "../util/style_consts";
-import { getData } from "../util/helpers";
+
+import { getRecipes, setRecipes } from "../util/helpers";
 import { CocktailText as Text } from "../components/CocktailText";
 import RecipesItem from "../components/RecipesItem";
 
@@ -24,10 +26,8 @@ class Recipes extends Component {
   constructor(props) {
     super(props);
 
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
     this.state = {
-      dataSource: ds.cloneWithRows(RECIPES),
+			dataSource: false,
     };
   }
 
@@ -36,11 +36,12 @@ class Recipes extends Component {
 	}
 
 	async _loadInitialState() {
-		const data = await getData("recipes");
+		const data = await getRecipes();
 		console.log("in initial state", data);
 
-		if (typeof(data) === "undefined" || data === null) {
+		if (typeof(data) === "undefined" || data === null || !data.length) {
 			console.log("no data found; start request");
+			this._getData();
 			return;
 		}
 
@@ -50,6 +51,27 @@ class Recipes extends Component {
 		}
 
 		console.log("proceed with render", data);
+		this._setDataSource(data);
+	}
+
+	async _getData() {
+    // this will be the api request's location
+		const recipes = [
+			{ name: "foo", slug: "boo" },
+			{ name: "bar", slug: "dar" },
+		];
+
+		await setRecipes(recipes);
+
+		this._setDataSource(recipes);
+	}
+
+	_setDataSource(data) {
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
+    this.setState({
+			dataSource: ds.cloneWithRows(data),
+    });
 	}
 
 	_onPickRecipe = (recipe) => {
@@ -65,24 +87,26 @@ class Recipes extends Component {
 
     return (
 			<View style={viewStyles}>
-				<ListView
-					dataSource={dataSource}
-					renderHeader={() =>
-						<Text style={[STYLES.TitleStyle, headerStyles]}>
-							Recipes
-						</Text>
-					}
-					renderRow={(rowData) =>
-						<RecipesItem
-							recipe={rowData}
-							onPickRecipe={this._onPickRecipe}
-						/>
-					}
-					renderFooter={() =>
-						<View style={{ height: APP_PADDING }} />
-					}
-					style={listStyles}
-				/>
+				{dataSource &&
+					<ListView
+						dataSource={dataSource}
+						renderHeader={() =>
+							<Text style={[STYLES.TitleStyle, headerStyles]}>
+								Recipes
+							</Text>
+						}
+						renderRow={(rowData) =>
+							<RecipesItem
+								recipe={rowData}
+								onPickRecipe={this._onPickRecipe}
+							/>
+						}
+						renderFooter={() =>
+							<View style={{ height: APP_PADDING }} />
+						}
+						style={listStyles}
+					/>
+				}
 			</View>
     );
   }
@@ -93,6 +117,7 @@ const headerStyles = {
 };
 
 const viewStyles = {
+	flex: 1,
 	backgroundColor: COLORS.purple,
 };
 

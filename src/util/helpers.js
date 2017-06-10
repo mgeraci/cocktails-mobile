@@ -1,16 +1,61 @@
 import { AsyncStorage } from "react-native";
 
-import { STORAGE_KEY } from "./consts";
+
+// helpers
+// ----------------------------------------------------------------------------
 
 export function capitalize(s) {
 	return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-export const getData = async (key) => {
+
+// async storage interface
+// ----------------------------------------------------------------------------
+
+import { STORAGE_KEY } from "./consts";
+const error = { error: true };
+
+const storageKeys = {
+	recipes: "recipes",
+	recipe: "recipe",
+	ingredients: "ingredients",
+	sources: "sources",
+	searches: "searches",
+};
+
+function getKey(key) {
+	return `${STORAGE_KEY}.${key}`;
+}
+
+export const getRecipes = async (key) => {
 	try {
-		const data = await AsyncStorage.getItem(STORAGE_KEY) || {};
-		return data[key];
+		let data = await AsyncStorage.getItem(getKey(storageKeys.recipes));
+
+		if (typeof data !== "string") {
+			return error;
+		}
+
+		data = JSON.parse(data);
+
+		return data;
 	} catch (e) {
-		return { error: true };
+		return error;
+	}
+}
+
+export const setRecipes = async (_value) => {
+	if (_value === null || typeof _value === "undefined") {
+		return error;
+	}
+
+	const value = JSON.stringify(_value);
+
+	try {
+		await AsyncStorage.setItem(
+			getKey(storageKeys.recipes),
+			value,
+		);
+	} catch (e) {
+		return error;
 	}
 }
