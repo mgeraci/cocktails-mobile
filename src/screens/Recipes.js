@@ -77,7 +77,10 @@ class Recipes extends Component {
 	_onPickRecipe = (recipe) => {
 		this.props.navigator.push({
 			screen: "cocktails.Recipe",
-			title: recipe.title,
+			passProps: {
+				name: recipe.name,
+				slug: recipe.slug,
+			}
 		});
 	}
 

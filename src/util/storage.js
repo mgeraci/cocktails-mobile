@@ -15,6 +15,10 @@ function getKey(key) {
 	return `${STORAGE_KEY}.${key}`;
 }
 
+function getPrefixKey(key, value) {
+	return `${STORAGE_KEY}.${key}.${value}`;
+};
+
 export default {
 	getRecipes: async (key) => {
 		try {
@@ -42,6 +46,43 @@ export default {
 		try {
 			await AsyncStorage.setItem(
 				getKey(storageKeys.recipes),
+				value,
+			);
+		} catch (e) {
+			return error;
+		}
+	},
+
+	getRecipe: async (recipe) => {
+		const key = getPrefixKey(storageKeys.recipe, recipe);
+
+		try {
+			let data = await AsyncStorage.getItem(key);
+
+			if (typeof data !== "string") {
+				return error;
+			}
+
+			data = JSON.parse(data);
+
+			return data;
+		} catch (e) {
+			return error;
+		}
+	},
+
+	setRecipe: async (recipe, _value) => {
+		if (_value === null || typeof _value === "undefined") {
+			return error;
+		}
+
+		const key = getPrefixKey(storageKeys.recipe, recipe);
+		const value = JSON.stringify(_value);
+
+		console.log(key);
+		try {
+			await AsyncStorage.setItem(
+				key,
 				value,
 			);
 		} catch (e) {

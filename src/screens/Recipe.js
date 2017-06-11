@@ -5,8 +5,10 @@ import {
 	TouchableHighlight,
 } from "react-native";
 
-import { TestRecipe, NAVIGATOR_SETTINGS } from "../util/consts";
+import { api } from "../util/web";
+import { NAVIGATOR_SETTINGS } from "../util/consts";
 import { capitalize } from "../util/helpers";
+import Storage from "../util/storage";
 
 import { CocktailText as Text } from "../components/CocktailText";
 import Ingredient from "../components/Ingredient";
@@ -23,6 +25,42 @@ class Recipe extends Component {
 		this.state = {
 			quantity: 1,
 		};
+	}
+
+	componentDidMount() {
+		this._loadInitialState();
+	}
+
+	async _loadInitialState() {
+		const { slug } = this.props;
+		const data = await Storage.getRecipe(slug);
+
+		console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+		console.log("data", data);
+		if (typeof(data) === "undefined" || data === null || !data.ingrdients) {
+			this._fetchData();
+			return;
+		}
+
+		if (data.error) {
+			console.log("set error state");
+			return;
+		}
+
+		this.setState({ recipe: data });
+	}
+
+	async _fetchData() {
+		let recipes;
+		const { slug } = this.props;
+		const data = await api(`recipe/${slug}`);
+
+		if (data.ingredients && data.ingredients.length) {
+			await Storage.setRecipe(slug, data);
+			this.setState({ recipe: data });
+		} else {
+			console.log("set error state");
+		}
 	}
 
 	_increment = () => {
@@ -42,57 +80,70 @@ class Recipe extends Component {
 	}
 
 	render() {
+		const { name } = this.props;
 		const { quantity } = this.state;
+		let recipe = this.state.recipe || {};
+		let {
+			source,
+			ingredients,
+			directions,
+			glass,
+		} = recipe
+		const isLoaded = ingredients && ingredients.length;
 
 		return (
 			<ScrollView style={styles.wrapper}>
-				<Text style={styles.title}>
-					{TestRecipe.title}
+				<Text style={styles.name}>
+					{name}
 				</Text>
 
-				{TestRecipe.source &&
-					<Text style={styles.source}>
-						by {TestRecipe.source.name}
-					</Text>
+				{isLoaded &&
+					<View>
+						{source &&
+							<Text style={styles.source}>
+								by {source.name}
+							</Text>
+						}
+
+						<View style={styles.decoration} />
+
+						<View style={styles.ingredients}>
+							{ingredients.map((ingredient, i) =>
+								<Ingredient
+									key={i}
+									ingredient={ingredient}
+									quantity={quantity}
+								/>
+							)}
+						</View>
+
+						<Text style={styles.directions}>
+							{directions}
+						</Text>
+
+						<View style={styles.bottomWrapper}>
+							<View style={styles.bottomWrapperInner}>
+								<RecipeQuantity
+									quantity={quantity}
+									onDecrement={this._decrement}
+									onIncrement={this._increment}
+								/>
+								<Text style={styles.bottomLabel}>
+									Quantity
+								</Text>
+							</View>
+
+							<View style={[styles.bottomWrapperInner, styles.glassWrapper]}>
+								<View style={styles.glass} />
+								<Text style={styles.bottomLabel}>
+									{capitalize(`${glass.name} glass`)}
+								</Text>
+							</View>
+						</View>
+
+						<View style={{ width: 100, height: 30, }} />
+					</View>
 				}
-
-				<View style={styles.decoration} />
-
-				<View style={styles.ingredients}>
-					{TestRecipe.ingredients.map((ingredient, i) =>
-						<Ingredient
-							key={i}
-							ingredient={ingredient}
-							quantity={quantity}
-						/>
-					)}
-				</View>
-
-				<Text style={styles.directions}>
-					{TestRecipe.directions}
-				</Text>
-
-				<View style={styles.bottomWrapper}>
-					<View style={styles.bottomWrapperInner}>
-						<RecipeQuantity
-							quantity={quantity}
-							onDecrement={this._decrement}
-							onIncrement={this._increment}
-						/>
-						<Text style={styles.bottomLabel}>
-							Quantity
-						</Text>
-					</View>
-
-					<View style={[styles.bottomWrapperInner, styles.glassWrapper]}>
-						<View style={styles.glass} />
-						<Text style={styles.bottomLabel}>
-							{capitalize(`${TestRecipe.glass} glass`)}
-						</Text>
-					</View>
-				</View>
-
-				<View style={{ width: 100, height: 30, }} />
 			</ScrollView>
 		);
 	}

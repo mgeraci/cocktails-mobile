@@ -14,7 +14,7 @@ export default {
 		backgroundColor: COLORS.purple
 	},
 
-	title: {
+	name: {
 		fontSize: 28,
 		fontFamily: FONT_FAMILY,
 		textAlign: "center",

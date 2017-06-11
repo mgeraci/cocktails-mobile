@@ -37,25 +37,37 @@ function formatAmount(fraction) {
 
 const Ingredient = (props) => {
 	const { quantity, ingredient } = props;
-	const { amount, unit, name } = ingredient;
+	const { amount_num, amount_den, unit } = ingredient;
 
-	let currentFraction = new Fraction(amount.numerator, amount.denominator)
+	let currentFraction = new Fraction(amount_num, amount_den)
 		.multiply(quantity);
 
-	let currentUnit = unit.singular;
+	let currentUnit = "";
 
-	if (quantity > 1) {
-		currentUnit = unit.plural;
+	if (unit) {
+		currentUnit = unit.name;
+
+		if (quantity > 1) {
+			currentUnit = unit.plural;
+		}
 	}
 
 	return (
 		<View style={styles.wrapper}>
 			<Text style={styles.text}>
-				{formatAmount(currentFraction)}
-				{" "}
-				{currentUnit}
-				{" "}
-				{name}
+				{amount_num > 0 &&
+					<Text>
+						{formatAmount(currentFraction)}
+						{" "}
+					</Text>
+				}
+				{unit &&
+					<Text>
+						{currentUnit}
+						{" "}
+					</Text>
+				}
+				{ingredient.ingredient.name}
 			</Text>
 		</View>
 	);
