@@ -3,6 +3,7 @@ import {
 	ScrollView,
   View,
 	TouchableHighlight,
+	Image,
 } from "react-native";
 
 import { api } from "../util/web";
@@ -35,8 +36,6 @@ class Recipe extends Component {
 		const { slug } = this.props;
 		const data = await Storage.getRecipe(slug);
 
-		console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-		console.log("data", data);
 		if (typeof(data) === "undefined" || data === null || !data.ingrdients) {
 			this._fetchData();
 			return;
@@ -105,7 +104,10 @@ class Recipe extends Component {
 							</Text>
 						}
 
-						<View style={styles.decoration} />
+						<Image
+							style={styles.decoration}
+							source={require("../images/witness.png")}
+						/>
 
 						<View style={styles.ingredients}>
 							{ingredients.map((ingredient, i) =>

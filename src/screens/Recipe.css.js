@@ -27,15 +27,14 @@ export default {
 	},
 
 	decoration: {
-		marginTop: 22,
+		marginTop: 26,
 		width: 70,
-		height: 50,
+		height: 36,
 		alignSelf: "center",
-		backgroundColor: "rgba(0,0,0,0.2)",
 	},
 
 	ingredients: {
-		marginTop: 22,
+		marginTop: 26,
 	},
 
 	directions: {
