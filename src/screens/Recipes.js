@@ -20,6 +20,7 @@ import { api } from "../util/web";
 import Storage from "../util/storage";
 import { CocktailText as Text } from "../components/CocktailText";
 import RecipesItem from "../components/RecipesItem";
+import ListFooter from "../components/ListFooter";
 
 class Recipes extends Component {
 	static navigatorStyle = NAVIGATOR_SETTINGS;
@@ -69,6 +70,8 @@ class Recipes extends Component {
 	_setDataSource(data) {
 		const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
+		data = data.concat(data);
+
 		this.setState({
 			dataSource: ds.cloneWithRows(data),
 		});
@@ -105,7 +108,7 @@ class Recipes extends Component {
 							/>
 						}
 						renderFooter={() =>
-							<View style={{ height: APP_PADDING }} />
+							<ListFooter />
 						}
 						style={listStyles}
 					/>
