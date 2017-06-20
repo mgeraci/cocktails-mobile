@@ -14,6 +14,7 @@ import Storage from "../util/storage";
 import { CocktailText as Text } from "../components/CocktailText";
 import Ingredient from "../components/Ingredient";
 import RecipeQuantity from "../components/RecipeQuantity";
+import Glass from "../components/Glass";
 
 import styles from "./Recipe.css.js";
 
@@ -87,7 +88,7 @@ class Recipe extends Component {
 			ingredients,
 			directions,
 			glass,
-		} = recipe
+		} = recipe;
 		const isLoaded = ingredients && ingredients.length;
 
 		return (
@@ -136,7 +137,10 @@ class Recipe extends Component {
 							</View>
 
 							<View style={[styles.bottomWrapperInner, styles.glassWrapper]}>
-								<View style={styles.glass} />
+								<Glass
+									style={styles.glass}
+									glass={glass.slug}
+								/>
 								<Text style={styles.bottomLabel}>
 									{capitalize(`${glass.name} glass`)}
 								</Text>

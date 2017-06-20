@@ -73,7 +73,6 @@ export default {
 	glass: {
 		width: QUANTITY_BUTTON_SIZE,
 		height: QUANTITY_BUTTON_SIZE,
-		backgroundColor: "rgba(0,0,0,0.2)",
 		alignSelf: "center",
 	},
 };
