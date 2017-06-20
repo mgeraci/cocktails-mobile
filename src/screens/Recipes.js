@@ -22,6 +22,8 @@ import { CocktailText as Text } from "../components/CocktailText";
 import RecipesItem from "../components/RecipesItem";
 import ListFooter from "../components/ListFooter";
 
+import styles from "./Recipes.css.js";
+
 class Recipes extends Component {
 	static navigatorStyle = NAVIGATOR_SETTINGS;
 
@@ -70,8 +72,6 @@ class Recipes extends Component {
 	_setDataSource(data) {
 		const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
-		data = data.concat(data);
-
 		this.setState({
 			dataSource: ds.cloneWithRows(data),
 		});
@@ -92,12 +92,12 @@ class Recipes extends Component {
 		const { dataSource } = this.state;
 
 		return (
-			<View style={viewStyles}>
+			<View style={styles.wrapper}>
 				{dataSource &&
 					<ListView
 						dataSource={dataSource}
 						renderHeader={() =>
-							<Text style={[STYLES.TitleStyle, headerStyles]}>
+							<Text style={[STYLES.TitleStyle, styles.header]}>
 								Recipes
 							</Text>
 						}
@@ -110,26 +110,12 @@ class Recipes extends Component {
 						renderFooter={() =>
 							<ListFooter />
 						}
-						style={listStyles}
+						style={styles.list}
 					/>
 				}
 			</View>
 		);
 	}
 }
-
-const headerStyles = {
-	paddingTop: APP_PADDING,
-};
-
-const viewStyles = {
-	flex: 1,
-	backgroundColor: COLORS.purple,
-};
-
-const listStyles = {
-	paddingLeft: APP_PADDING,
-	paddingRight: APP_PADDING,
-};
 
 export default Recipes;
