@@ -61,13 +61,19 @@ const Ingredient = (props) => {
 						{" "}
 					</Text>
 				}
-				{unit &&
+				{unit && !unit.after_ingredient &&
 					<Text>
 						{currentUnit}
 						{" "}
 					</Text>
 				}
 				{ingredient.ingredient.name}
+				{unit && unit.after_ingredient &&
+					<Text>
+						{" "}
+						{currentUnit}
+					</Text>
+				}
 			</Text>
 		</View>
 	);
