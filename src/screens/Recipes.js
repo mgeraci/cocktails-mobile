@@ -5,16 +5,7 @@ import {
 	ListView,
 } from "react-native";
 
-import {
-	RECIPES,
-	NAVIGATOR_SETTINGS,
-} from "../util/consts";
-
-import {
-	STYLES,
-	APP_PADDING,
-	COLORS,
-} from "../util/style_consts";
+import { NAVIGATOR_SETTINGS } from "../util/consts";
 
 import { api } from "../util/web";
 import Storage from "../util/storage";
@@ -88,7 +79,7 @@ class Recipes extends Component {
 	}
 
 	render() {
-		const { onPickRecipe } = this.props;
+		const { onPickRecipe, navigator } = this.props;
 		const { dataSource } = this.state;
 
 		return (
@@ -97,7 +88,7 @@ class Recipes extends Component {
 					<ListView
 						dataSource={dataSource}
 						renderHeader={() =>
-							<Text style={[STYLES.TitleStyle, styles.header]}>
+							<Text style={styles.title}>
 								Recipes
 							</Text>
 						}
@@ -108,7 +99,9 @@ class Recipes extends Component {
 							/>
 						}
 						renderFooter={() =>
-							<ListFooter />
+							<ListFooter
+								navigator={navigator}
+							/>
 						}
 						style={styles.list}
 					/>

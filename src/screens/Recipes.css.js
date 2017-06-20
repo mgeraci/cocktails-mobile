@@ -1,6 +1,7 @@
 import {
 	APP_PADDING,
 	COLORS,
+	STYLES,
 } from "../util/style_consts";
 
 export default { 
@@ -9,7 +10,8 @@ export default {
 		backgroundColor: COLORS.purple,
 	},
 
-	header: {
+	title: {
+		...STYLES.TitleStyle,
 		paddingTop: APP_PADDING,
 	},
 

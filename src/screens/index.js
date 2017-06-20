@@ -2,6 +2,7 @@ import { Navigation } from "react-native-navigation";
 
 import Recipes from "./Recipes";
 import Recipe from "./Recipe";
+import Login from "./Login";
 
 export default function() {
 	// tabs
@@ -9,4 +10,5 @@ export default function() {
 
 	// subpages
 	Navigation.registerComponent("cocktails.Recipe", () => Recipe);
+	Navigation.registerComponent("cocktails.Login", () => Login);
 }

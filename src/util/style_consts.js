@@ -1,5 +1,3 @@
-import { StyleSheet } from 'react-native';
-
 export const FONT_FAMILY = "AvenirLTStd-Roman";
 export const FONT_FAMILY_LIGHT = "AvenirLTStd-Light";
 
@@ -14,14 +12,15 @@ export const APP_PADDING = 20;
 
 export const QUANTITY_BUTTON_SIZE = 50;
 
-export const STYLES = StyleSheet.create({
+export const STYLES = {
 	TextStyle: {
 		color: COLORS.tan,
 		fontFamily: FONT_FAMILY,
 	},
+
 	TitleStyle: {
 		fontSize: 28,
 		fontFamily: FONT_FAMILY,
 		marginBottom: 32,
 	},
-});
+};
