@@ -9,7 +9,7 @@ import { NAVIGATOR_SETTINGS } from "../util/consts";
 import Storage from "../util/storage";
 import { api } from "../util/web";
 import ListPage from "../components/ListPage";
-import RecipesItem from "../components/RecipesItem";
+import ListItem from "../components/ListItem";
 
 const Recipes = (props) => {
 	const onPress = (recipe) => {
@@ -41,7 +41,7 @@ const Recipes = (props) => {
 			title="Recipes"
 			getStoredData={Storage.getRecipes}
 			fetchData={fetchData}
-			item={RecipesItem}
+			item={ListItem}
 			onPress={onPress}
 			navigator={props.navigator}
 		/>

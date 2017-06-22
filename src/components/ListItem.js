@@ -5,12 +5,11 @@ import {
 	View,
 } from 'react-native';
 
-import { COLORS } from "../util/style_consts";
 import { CocktailText as Text } from "./CocktailText";
 
-import styles from "./RecipesItem.css.js";
+import styles from "./ListItem.css.js";
 
-const RecipesItem = (props) => {
+const ListItem = (props) => {
 	const { item, onPress } = props;
 
 	function _handlePress() {
@@ -30,9 +29,9 @@ const RecipesItem = (props) => {
 	);
 };
 
-RecipesItem.propTypes = {
+ListItem.propTypes = {
 	item: PropTypes.object.isRequired,
 	onPress: PropTypes.func.isRequired,
 };
 
-export default RecipesItem;
+export default ListItem;
