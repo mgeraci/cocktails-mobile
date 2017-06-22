@@ -30,9 +30,12 @@ export const login = async ({ username, password }) => {
 	const path = getApiPath("api_login/");
 
 	try {
-		console.log("trying");
 		const response = await fetch(path, {
 			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded"
+			},
+			body: JSON.stringify({ username, password }),
 		});
 
 		const responseJson = await response.json();

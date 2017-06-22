@@ -10,6 +10,7 @@ import {
 import { CocktailText as Text } from "../components/CocktailText";
 import { NAVIGATOR_SETTINGS } from "../util/consts";
 import { login } from "../util/web";
+import Storage from "../util/storage";
 
 import styles from "./Login.css.js";
 
@@ -78,6 +79,10 @@ class Login extends Component {
 				error: "Your username or password was incorrect.",
 			});
 		} else {
+			await Storage.clearRecipes();
+			this.props.navigator.resetTo({
+				screen: "cocktails.Recipes",
+			});
 		}
 	}
 

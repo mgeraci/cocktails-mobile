@@ -53,6 +53,14 @@ export default {
 		}
 	},
 
+	clearRecipes: async () => {
+		try {
+			await AsyncStorage.removeItem(getKey(storageKeys.recipes));
+		} catch (e) {
+			return e;
+		}
+	},
+
 	getRecipe: async (recipe) => {
 		const key = getPrefixKey(storageKeys.recipe, recipe);
 
@@ -87,8 +95,5 @@ export default {
 		} catch (e) {
 			return error;
 		}
-	},
-
-	login: async () => {
 	},
 };
