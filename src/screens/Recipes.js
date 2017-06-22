@@ -6,47 +6,23 @@ import {
 } from "react-native";
 
 import { NAVIGATOR_SETTINGS } from "../util/consts";
-
-import { api } from "../util/web";
 import Storage from "../util/storage";
-import { CocktailText as Text } from "../components/CocktailText";
+import { api } from "../util/web";
+import ListPage from "../components/ListPage";
 import RecipesItem from "../components/RecipesItem";
-import ListFooter from "../components/ListFooter";
 
-import styles from "./Recipes.css.js";
+const Recipes = (props) => {
+	const onPress = (recipe) => {
+		props.navigator.push({
+			screen: "cocktails.Recipe",
+			passProps: {
+				name: recipe.name,
+				slug: recipe.slug,
+			}
+		});
+	};
 
-class Recipes extends Component {
-	static navigatorStyle = NAVIGATOR_SETTINGS;
-
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			dataSource: false,
-		};
-	}
-
-	componentDidMount() {
-		this._loadInitialState();
-	}
-
-	async _loadInitialState() {
-		const data = await Storage.getRecipes();
-
-		if (typeof(data) === "undefined" || data === null || !data.length) {
-			this._fetchData();
-			return;
-		}
-
-		if (data.error) {
-			console.log("set error state");
-			return;
-		}
-
-		this._setDataSource(data);
-	}
-
-	async _fetchData() {
+	const fetchData = async () => {
 		let recipes;
 		const data = await api("recipes");
 
@@ -54,61 +30,24 @@ class Recipes extends Component {
 			recipes = data.recipes;
 
 			await Storage.setRecipes(recipes);
-			this._setDataSource(recipes);
+			return recipes;
 		} else {
-			console.log("set error state");
+			return { error: true };
 		}
-	}
+	};
 
-	_setDataSource(data) {
-		const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+	return (
+		<ListPage
+			title="Recipes"
+			getStoredData={Storage.getRecipes}
+			fetchData={fetchData}
+			item={RecipesItem}
+			onPress={onPress}
+			navigator={props.navigator}
+		/>
+	);
+};
 
-		this.setState({
-			dataSource: ds.cloneWithRows(data),
-		});
-	}
-
-	_onPickRecipe = (recipe) => {
-		this.props.navigator.push({
-			screen: "cocktails.Recipe",
-			passProps: {
-				name: recipe.name,
-				slug: recipe.slug,
-			}
-		});
-	}
-
-	render() {
-		const { onPickRecipe, navigator } = this.props;
-		const { dataSource } = this.state;
-
-		return (
-			<View style={styles.wrapper}>
-				{dataSource &&
-					<ListView
-						dataSource={dataSource}
-						renderHeader={() =>
-							<Text style={styles.title}>
-								Recipes
-							</Text>
-						}
-						renderRow={(rowData) =>
-							<RecipesItem
-								recipe={rowData}
-								onPickRecipe={this._onPickRecipe}
-							/>
-						}
-						renderFooter={() =>
-							<ListFooter
-								navigator={navigator}
-							/>
-						}
-						style={styles.list}
-					/>
-				}
-			</View>
-		);
-	}
-}
+Recipes.navigatorStyle = NAVIGATOR_SETTINGS;
 
 export default Recipes;

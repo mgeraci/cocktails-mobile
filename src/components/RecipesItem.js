@@ -11,10 +11,10 @@ import { CocktailText as Text } from "./CocktailText";
 import styles from "./RecipesItem.css.js";
 
 const RecipesItem = (props) => {
-	const { recipe, onPickRecipe } = props;
+	const { item, onPress } = props;
 
 	function _handlePress() {
-		onPickRecipe(recipe);
+		onPress(item);
 	}
 
 	return (
@@ -23,7 +23,7 @@ const RecipesItem = (props) => {
 		>
 			<View>
 				<Text style={styles.button}>
-					{recipe.name}
+					{item.name}
 				</Text>
 			</View>
 		</TouchableHighlight>
@@ -31,8 +31,8 @@ const RecipesItem = (props) => {
 };
 
 RecipesItem.propTypes = {
-	recipe: PropTypes.object.isRequired,
-	onPickRecipe: PropTypes.func.isRequired,
+	item: PropTypes.object.isRequired,
+	onPress: PropTypes.func.isRequired,
 };
 
 export default RecipesItem;
