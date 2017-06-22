@@ -20,6 +20,47 @@ function getPrefixKey(key, value) {
 	return `${STORAGE_KEY}.${key}.${value}`;
 };
 
+async function getItem(key) {
+	if (!storageKeys[key]) {
+		return error;
+	}
+
+	try {
+		let data = await AsyncStorage.getItem(getKey(key));
+
+		if (typeof data !== "string") {
+			return error;
+		}
+
+		data = JSON.parse(data);
+
+		return data;
+	} catch (e) {
+		return error;
+	}
+};
+
+async function setItem(key, _value) {
+	if (!storageKeys[key]) {
+		return error;
+	}
+
+	if (_value === null || typeof _value === "undefined") {
+		return error;
+	}
+
+	const value = JSON.stringify(_value);
+
+	try {
+		await AsyncStorage.setItem(
+			getKey(storageKeys[key]),
+			value,
+		);
+	} catch (e) {
+		return error;
+	}
+};
+
 export default {
 	setSessionKey: async (sessionKey) => {
 		try {
@@ -46,37 +87,12 @@ export default {
 		}
 	},
 
-	getRecipes: async (key) => {
-		try {
-			let data = await AsyncStorage.getItem(getKey(storageKeys.recipes));
-
-			if (typeof data !== "string") {
-				return error;
-			}
-
-			data = JSON.parse(data);
-
-			return data;
-		} catch (e) {
-			return error;
-		}
+	getRecipes: async () => {
+		return await getItem(storageKeys.recipes);
 	},
 
-	setRecipes: async (_value) => {
-		if (_value === null || typeof _value === "undefined") {
-			return error;
-		}
-
-		const value = JSON.stringify(_value);
-
-		try {
-			await AsyncStorage.setItem(
-				getKey(storageKeys.recipes),
-				value,
-			);
-		} catch (e) {
-			return error;
-		}
+	setRecipes: async (value) => {
+		setItem(storageKeys.recipes, value);
 	},
 
 	clearRecipes: async () => {
@@ -121,5 +137,13 @@ export default {
 		} catch (e) {
 			return error;
 		}
+	},
+
+	getIngredients: async () => {
+		return await getItem(storageKeys.ingredients);
+	},
+
+	setIngredients: async (value) => {
+		setItem(storageKeys.ingredients, value);
 	},
 };

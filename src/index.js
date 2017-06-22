@@ -71,7 +71,7 @@ function _startApp() {
 		{
 			label: "Ingredients",
 			title: "Ingredients",
-			screen: "cocktails.Recipes",
+			screen: "cocktails.Ingredients",
 			icon: iconIngredients,
 		},
 		{
