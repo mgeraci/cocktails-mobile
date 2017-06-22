@@ -1,3 +1,5 @@
+import Storage from "./storage";
+
 const API_ROOTS = {
 	dev: "http://localhost:8000/",
 	prod: "https://cocktails.michaelgeraci.com/",
@@ -11,12 +13,17 @@ const getApiPath = (path) => {
 
 export const api = async (_path) => {
 	const path = getApiPath(_path);
+	const sessionKey = await Storage.getSessionKey();
+	const headers = {};
+
+	if (sessionKey) {
+		headers.sessionid = sessionKey;
+	}
 
 	try {
 		const response = await fetch(path, {
 			method: "GET",
-			// headers: {
-			// },
+			headers,
 		});
 		const responseJson = await response.json();
 

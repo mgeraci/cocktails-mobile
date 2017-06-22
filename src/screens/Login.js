@@ -32,8 +32,8 @@ class Login extends Component {
 		super(props);
 
 		this.state = {
-			[fields[0].name]: "foo",
-			[fields[1].name]: "bar",
+			[fields[0].name]: "",
+			[fields[1].name]: "",
 		};
 	}
 
@@ -79,6 +79,10 @@ class Login extends Component {
 				error: "Your username or password was incorrect.",
 			});
 		} else {
+			if (res.session_key) {
+				await Storage.setSessionKey(res.session_key);
+			}
+
 			await Storage.clearRecipes();
 			this.props.navigator.resetTo({
 				screen: "cocktails.Recipes",
