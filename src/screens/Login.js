@@ -3,10 +3,13 @@ import {
 	View,
 	TextInput,
 	TouchableHighlight,
+	Image,
+	ScrollView,
 } from "react-native";
 
 import { CocktailText as Text } from "../components/CocktailText";
 import { NAVIGATOR_SETTINGS } from "../util/consts";
+import { login } from "../util/web";
 
 import styles from "./Login.css.js";
 
@@ -46,17 +49,53 @@ class Login extends Component {
 		this.setState({ [name]: val });
 	}
 
-	_handleSubmit = () => {
-		console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-		console.log(this.state);
+	_handleSubmit = async () => {
+		const { username, password, isSubmitting } = this.state;
+
+		// short circuit on blank
+		if (username === "" || password === "") {
+			this.setState({
+				error: "Your username or password was blank.",
+			});
+
+			return;
+		}
+
+		// short circuit if already submitting
+		if (isSubmitting) {
+			return;
+		}
+
+		this.setState({
+			isSubmitting: true,
+		});
+
+		const res = await login({ username, password });
+
+		if (res.error) {
+			this.setState({
+				isSubmitting: false,
+				error: "Your username or password was incorrect.",
+			});
+		} else {
+		}
 	}
 
 	render() {
+		const { isSubmitting, error } = this.state;
+
 		return (
-			<View style={styles.wrapper}>
+			<ScrollView style={styles.wrapper} scrollEnabled={false}>
 				<Text style={styles.title}>
 					Log In
 				</Text>
+				{error &&
+					<View style={styles.error}>
+						<Text>
+							{error}
+						</Text>
+					</View>
+				}
 				{fields.map((field, i) =>
 					<View key={i}>
 						<Text style={styles.label}>
@@ -67,22 +106,33 @@ class Login extends Component {
 							value={this.state[field.name]}
 							onChangeText={this._handlers[field.name]}
 							style={styles.input}
-							returnKeyType={field.name === "password" ? "go" : "next"}
+							keyboardType={field.name === "username" ? "email-address" : "default"}
+							returnKeyType="go"
 							secureTextEntry={field.name === "password"}
+							onSubmitEditing={this._handleSubmit}
 						/>
 					</View>
 				)}
-				<TouchableHighlight
-					onPress={this._handleSubmit}
-					style={styles.submitWrapper}
-				>
-					<View style={styles.submit}>
-						<Text style={styles.submitText}>
-							Log in
-						</Text>
-					</View>
-				</TouchableHighlight>
-			</View>
+
+				<View style={styles.submitRow}>
+					<TouchableHighlight
+						onPress={this._handleSubmit}
+						style={styles.submitWrapper}
+					>
+						<View style={styles.submit}>
+							<Text style={styles.submitText}>
+								Log in
+							</Text>
+						</View>
+					</TouchableHighlight>
+					{isSubmitting &&
+						<Image
+							style={styles.spinner}
+							source={require("../images/spinner.gif")}
+						/>
+					}
+				</View>
+			</ScrollView>
 		);
 	}
 }

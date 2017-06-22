@@ -79,7 +79,6 @@ export default {
 		const key = getPrefixKey(storageKeys.recipe, recipe);
 		const value = JSON.stringify(_value);
 
-		console.log(key);
 		try {
 			await AsyncStorage.setItem(
 				key,
@@ -88,5 +87,8 @@ export default {
 		} catch (e) {
 			return error;
 		}
+	},
+
+	login: async () => {
 	},
 };

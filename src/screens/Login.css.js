@@ -19,6 +19,17 @@ export default {
 		...STYLES.TitleStyle,
 	},
 
+	error: {
+		height: buttonHeight,
+		marginBottom: 20,
+		backgroundColor: COLORS.pink,
+		borderRadius: br,
+		overflow: "hidden",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+
 	label: {
 		fontSize: 16,
 	},
@@ -34,8 +45,13 @@ export default {
 		paddingRight: 8,
 	},
 
-	submitWrapper: {
+	submitRow: {
 		marginTop: 10,
+		flex: 1,
+		flexDirection: "row",
+	},
+
+	submitWrapper: {
 		width: buttonWidth,
 		height: buttonHeight,
 		borderRadius: br,
@@ -54,5 +70,12 @@ export default {
 	submitText: {
 		color: COLORS.purple,
 		fontSize: 16,
+	},
+
+	spinner: {
+		width: 20,
+		height: 20,
+		marginTop: 11,
+		marginLeft: 10,
 	},
 };
