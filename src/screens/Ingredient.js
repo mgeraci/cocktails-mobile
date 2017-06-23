@@ -11,26 +11,24 @@ import { api } from "../util/web";
 import ListPage from "../components/ListPage";
 import ListItem from "../components/ListItem";
 
-const Ingredients = (props) => {
-	const onPress = (ingredient) => {
+const Ingredient = (props) => {
+	const { name, slug } = props;
+
+	const onPress = (recipe) => {
 		props.navigator.push({
-			screen: "cocktails.Ingredient",
+			screen: "cocktails.Recipe",
 			passProps: {
-				name: ingredient.name,
-				slug: ingredient.slug,
+				name: recipe.name,
+				slug: recipe.slug,
 			}
 		});
 	};
 
 	const fetchData = async () => {
-		let recipes;
-		const data = await api("ingredients");
+		const data = await api(`ingredient/${slug}`);
 
-		if (data.ingredients) {
-			ingredients = data.ingredients;
-
-			await Storage.setIngredients(ingredients);
-			return ingredients;
+		if (data.recipes) {
+			return data.recipes;
 		} else {
 			return { error: true };
 		}
@@ -38,8 +36,8 @@ const Ingredients = (props) => {
 
 	return (
 		<ListPage
-			title="Ingredients"
-			getStoredData={Storage.getIngredients}
+			title={`Recipes with ${name}`}
+			getStoredData={() => { return []; }}
 			fetchData={fetchData}
 			item={ListItem}
 			onPress={onPress}
@@ -48,6 +46,6 @@ const Ingredients = (props) => {
 	);
 };
 
-Ingredients.navigatorStyle = NAVIGATOR_SETTINGS;
+Ingredient.navigatorStyle = NAVIGATOR_SETTINGS;
 
-export default Ingredients;
+export default Ingredient;

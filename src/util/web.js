@@ -20,6 +20,8 @@ export const api = async (_path) => {
 		headers.sessionid = sessionKey;
 	}
 
+	console.log(path);
+
 	try {
 		const response = await fetch(path, {
 			method: "GET",
