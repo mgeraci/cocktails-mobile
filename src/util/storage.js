@@ -146,4 +146,12 @@ export default {
 	setIngredients: async (value) => {
 		setItem(storageKeys.ingredients, value);
 	},
+
+	getSources: async () => {
+		return await getItem(storageKeys.sources);
+	},
+
+	setSources: async (value) => {
+		setItem(storageKeys.sources, value);
+	},
 };

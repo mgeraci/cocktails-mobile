@@ -6,6 +6,9 @@ import Recipe from "./Recipe";
 import Ingredients from "./Ingredients";
 import Ingredient from "./Ingredient";
 
+import Sources from "./Sources";
+import Source from "./Source";
+
 import Login from "./Login";
 
 export default function() {
@@ -14,6 +17,9 @@ export default function() {
 
 	Navigation.registerComponent("cocktails.Ingredients", () => Ingredients);
 	Navigation.registerComponent("cocktails.Ingredient", () => Ingredient);
+
+	Navigation.registerComponent("cocktails.Sources", () => Sources);
+	Navigation.registerComponent("cocktails.Source", () => Source);
 
 	Navigation.registerComponent("cocktails.Login", () => Login);
 }
