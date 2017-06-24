@@ -83,7 +83,7 @@ function _startApp() {
 		{
 			label: "Search",
 			title: "Search",
-			screen: "cocktails.Recipes",
+			screen: "cocktails.Search",
 			icon: iconSearch,
 		},
 	];

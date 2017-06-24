@@ -7,8 +7,8 @@ import {
 
 import { api } from "../util/web";
 import Storage from "../util/storage";
-import { CocktailText as Text } from "../components/CocktailText";
-import ListFooter from "../components/ListFooter";
+import { CocktailText as Text } from "./CocktailText";
+import ListFooter from "./ListFooter";
 
 import styles from "./ListPage.css.js";
 

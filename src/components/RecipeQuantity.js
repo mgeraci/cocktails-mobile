@@ -5,7 +5,7 @@ import {
 	TouchableHighlight,
 } from "react-native";
 
-import { CocktailText as Text } from "../components/CocktailText";
+import { CocktailText as Text } from "./CocktailText";
 
 import styles from "./RecipeQuantity.css.js";
 

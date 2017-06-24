@@ -9,6 +9,8 @@ import Ingredient from "./Ingredient";
 import Sources from "./Sources";
 import Source from "./Source";
 
+import Search from "./Search";
+
 import Login from "./Login";
 
 export default function() {
@@ -20,6 +22,8 @@ export default function() {
 
 	Navigation.registerComponent("cocktails.Sources", () => Sources);
 	Navigation.registerComponent("cocktails.Source", () => Source);
+
+	Navigation.registerComponent("cocktails.Search", () => Search);
 
 	Navigation.registerComponent("cocktails.Login", () => Login);
 }
