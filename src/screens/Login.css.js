@@ -35,14 +35,10 @@ export default {
 	},
 
 	input: {
+		...STYLES.InputStyle,
 		marginTop: 6,
 		marginBottom: 22,
 		maxWidth: 250,
-		height: 36,
-		backgroundColor: "rgba(255, 255, 255, 0.9)",
-		borderRadius: br,
-		paddingLeft: 8,
-		paddingRight: 8,
 	},
 
 	submitRow: {
@@ -58,18 +54,13 @@ export default {
 	},
 
 	submit: {
+		...STYLES.ButtonStyle,
 		width: buttonWidth,
 		height: buttonHeight,
-		backgroundColor: COLORS.brown,
-		borderRadius: br,
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
 	},
 
 	submitText: {
-		color: COLORS.purple,
-		fontSize: 16,
+		...STYLES.ButtonTextStyle,
 	},
 
 	spinner: {
