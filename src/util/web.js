@@ -5,10 +5,18 @@ const API_ROOTS = {
 	prod: "https://cocktails.michaelgeraci.com/",
 };
 
-const API_SUFFIX = "?api=1";
+const API_SUFFIX = "api=1";
 
 const getApiPath = (path) => {
-	return `${API_ROOTS.dev}${path}${API_SUFFIX}`;
+	let suffix;
+
+	if (path.indexOf("?") < 0) {
+		suffix = `?${API_SUFFIX}`;
+	} else {
+		suffix = `&${API_SUFFIX}`;
+	}
+
+	return `${API_ROOTS.dev}${path}${suffix}`;
 }
 
 export const api = async (_path) => {

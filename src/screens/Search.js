@@ -26,9 +26,27 @@ class Search extends Component {
 		this.setState({ query });
 	}
 
-	_handleSubmit = () => {
+	_handleSubmit = async () => {
 		const { query } = this.state;
-		console.log("submitting", query);
+
+		if (query === null || query === "") {
+			return;
+		}
+
+		// try getting the search from storage
+		const storedSearch = await Storage.getSearch(query);
+		let data;
+
+		if (storedSearch !== null && !storedSearch.error) {
+			console.log("we gots a search");
+			data = storedSearch;
+		} else {
+			console.log("hitting the api");
+			data = await api(`search?query=${query}`);
+			await Storage.setSearch(query, data);
+		}
+
+		console.log(data);
 	}
 
 	render() {

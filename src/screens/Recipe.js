@@ -37,7 +37,7 @@ class Recipe extends Component {
 		const { slug } = this.props;
 		const data = await Storage.getRecipe(slug);
 
-		if (typeof(data) === "undefined" || data === null || !data.ingrdients) {
+		if (typeof(data) === "undefined" || data === null || !data.ingredients) {
 			this._fetchData();
 			return;
 		}
