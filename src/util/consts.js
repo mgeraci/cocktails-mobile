@@ -12,6 +12,12 @@ export const FONT_ICON_MAP = {
 	search: "d",
 };
 
+export const SEARCH_SECTIONS = {
+	recipe_titles_res: "Recipes",
+	recipe_ingredients_res: "Recipes with matching ingredients",
+	ingredient_res: "Ingredients",
+};
+
 export const FRACTIONS = {
 	1: {
 		2: "½",

@@ -6,8 +6,12 @@ import {
 	TouchableHighlight,
 } from "react-native";
 
-import { NAVIGATOR_SETTINGS } from "../util/consts";
+import {
+	NAVIGATOR_SETTINGS,
+	SEARCH_SECTIONS,
+} from "../util/consts";
 import { CocktailText as Text } from "../components/CocktailText";
+import ListFooter from "../components/ListFooter";
 import Storage from "../util/storage";
 import { api } from "../util/web";
 
@@ -38,18 +42,13 @@ class Search extends Component {
 
 	_prepareDataForListview = (data) => {
 		const res = {};
-		const titleMap = {
-			recipe_titles_res: "Recipes",
-			recipe_ingredients_res: "Recipes with matching ingredients",
-			ingredient_res: "Ingredients",
-		};
 
 		Object.keys(data).forEach((key) => {
-			if (titleMap[key]) {
+			if (SEARCH_SECTIONS[key]) {
 				if (data[key].length) {
-					res[titleMap[key]] = data[key];
+					res[key] = data[key];
 				} else {
-					res[titleMap[key]] = { empty: true };
+					res[key] = { empty: true };
 				}
 			}
 		});
@@ -90,50 +89,51 @@ class Search extends Component {
 		const hasError = data && !!data.no_results;
 
 		return (
-			<View style={styles.wrapper}>
-				<ListView
-					enableEmptySections
-					dataSource={this.state.dataSource}
+			<ListView
+				enableEmptySections
+				style={styles.wrapper}
+				dataSource={this.state.dataSource}
 
-					renderHeader={() =>
-						<View>
-							<Text style={styles.title}>
-								Search
-							</Text>
-							<View style={styles.searchRow}>
-								<TextInput
-									name="query"
-									value={query}
-									style={styles.input}
-									returnKeyType="go"
-									onChangeText={this._handleChange}
-									onSubmitEditing={this._handleSubmit}
-								/>
-								<TouchableHighlight
-									style={styles.buttonWrapper}
-									onPress={this._handleSubmit}
-								>
-									<View style={styles.button}>
-										<Text style={styles.buttonText}>
-											Search
-										</Text>
-									</View>
-								</TouchableHighlight>
-							</View>
+				renderHeader={() =>
+					<View>
+						<Text style={styles.title}>
+							Search
+						</Text>
+						<View style={styles.searchRow}>
+							<TextInput
+								name="query"
+								value={query}
+								style={styles.input}
+								returnKeyType="go"
+								onChangeText={this._handleChange}
+								onSubmitEditing={this._handleSubmit}
+							/>
+							<TouchableHighlight
+								style={styles.buttonWrapper}
+								onPress={this._handleSubmit}
+							>
+								<View style={styles.button}>
+									<Text style={styles.buttonText}>
+										Search
+									</Text>
+								</View>
+							</TouchableHighlight>
 						</View>
-					}
+					</View>
+				}
 
-					renderSectionHeader={(sectionData, header) => {
-						return (
-							<Text>{header}</Text>
-						);
-					}}
+				renderSectionHeader={(sectionData, category) => {
+					return (
+						<Text>{SEARCH_SECTIONS[category]}</Text>
+					);
+				}}
 
-					renderRow={(row) =>
-						<Text>{row.name}</Text>
-					}
-				/>
-			</View>
+				renderRow={(row, category) =>
+					<Text>{row.name} {category}</Text>
+				}
+
+				renderFooter={() => <View style={styles.footer} /> }
+			/>
 		);
 	}
 };

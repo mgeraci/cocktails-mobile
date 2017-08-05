@@ -46,4 +46,9 @@ export default {
 	buttonText: {
 		...STYLES.ButtonTextStyle,
 	},
+
+	footer: {
+		flex: 1,
+		height: 40,
+	}
 }
