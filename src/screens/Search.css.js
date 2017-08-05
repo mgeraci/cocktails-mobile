@@ -32,6 +32,8 @@ export default {
 	buttonWrapper: {
 		overflow: "hidden",
 		borderRadius: BR,
+		height: INPUT_HEIGHT,
+		marginLeft: 15,
 		display: "flex",
 	},
 
@@ -39,7 +41,6 @@ export default {
 		...STYLES.ButtonStyle,
 		width: 100,
 		height: INPUT_HEIGHT,
-		marginLeft: 15,
 	},
 
 	buttonText: {

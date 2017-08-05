@@ -5,7 +5,7 @@ import {
 	Image,
 } from "react-native";
 
-export default glass = (props) => {
+export default Glass = (props) => {
 	const { style, glass } = props;
 
 	const cocktail = require("../images/glass-cocktail.png");
@@ -66,7 +66,7 @@ export default glass = (props) => {
 	);
 };
 
-glass.propTypes = {
+Glass.propTypes = {
 	style: PropTypes.object.isRequired,
 	glass: PropTypes.string,
 };

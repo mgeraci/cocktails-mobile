@@ -7,6 +7,7 @@ import {
 
 import { NAVIGATOR_SETTINGS } from "../util/consts";
 import { CocktailText as Text } from "../components/CocktailText";
+import Error from "../components/Error";
 import Storage from "../util/storage";
 import { api } from "../util/web";
 
@@ -17,7 +18,6 @@ class Search extends Component {
 		super(props);
 
 		this.state = {
-			hasResults: false,
 			query: "",
 		};
 	}
@@ -47,10 +47,14 @@ class Search extends Component {
 		}
 
 		console.log(data);
+
+		this.setState({ data })
 	}
 
 	render() {
-		const { hasResults, query } = this.state;
+		const { data, query } = this.state;
+		const hasResults = data && !data.no_results;
+		const hasError = data && !!data.no_results;
 
 		return (
 			<View style={styles.wrapper}>
@@ -81,6 +85,9 @@ class Search extends Component {
 					<Text>
 						show results
 					</Text>
+				}
+				{hasError &&
+					<Error message={`No results for ${data.query}.`} />
 				}
 			</View>
 		);
