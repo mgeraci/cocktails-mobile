@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import {
 	View,
+	ListView,
 	TextInput,
 	TouchableHighlight,
 } from "react-native";
 
 import { NAVIGATOR_SETTINGS } from "../util/consts";
 import { CocktailText as Text } from "../components/CocktailText";
-import Error from "../components/Error";
 import Storage from "../util/storage";
 import { api } from "../util/web";
 
@@ -17,13 +17,44 @@ class Search extends Component {
 	constructor(props) {
 		super(props);
 
+		const dataSource = this._generateDataSource();
+
 		this.state = {
 			query: "",
+			dataSource: dataSource.cloneWithRowsAndSections({}),
 		};
 	}
 
 	_handleChange = (query) => {
 		this.setState({ query });
+	}
+
+	_generateDataSource = () => {
+		return new ListView.DataSource({
+			 rowHasChanged: (r1, r2) => r1 !== r2,
+			 sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+		 });
+	}
+
+	_prepareDataForListview = (data) => {
+		const res = {};
+		const titleMap = {
+			recipe_titles_res: "Recipes",
+			recipe_ingredients_res: "Recipes with matching ingredients",
+			ingredient_res: "Ingredients",
+		};
+
+		Object.keys(data).forEach((key) => {
+			if (titleMap[key]) {
+				if (data[key].length) {
+					res[titleMap[key]] = data[key];
+				} else {
+					res[titleMap[key]] = { empty: true };
+				}
+			}
+		});
+
+		return res;
 	}
 
 	_handleSubmit = async () => {
@@ -38,17 +69,19 @@ class Search extends Component {
 		let data;
 
 		if (storedSearch !== null && !storedSearch.error) {
-			console.log("we gots a search");
 			data = storedSearch;
 		} else {
-			console.log("hitting the api");
 			data = await api(`search?query=${query}`);
 			await Storage.setSearch(query, data);
 		}
 
-		console.log(data);
+		const listViewData = this._prepareDataForListview(data);
+		const dataSource = this._generateDataSource();
 
-		this.setState({ data })
+		this.setState({
+			data,
+			dataSource: dataSource.cloneWithRowsAndSections(listViewData),
+		})
 	}
 
 	render() {
@@ -58,37 +91,48 @@ class Search extends Component {
 
 		return (
 			<View style={styles.wrapper}>
-				<Text style={styles.title}>
-					Search
-				</Text>
-				<View style={styles.searchRow}>
-					<TextInput
-						name="query"
-						value={query}
-						style={styles.input}
-						returnKeyType="go"
-						onChangeText={this._handleChange}
-						onSubmitEditing={this._handleSubmit}
-					/>
-					<TouchableHighlight
-						style={styles.buttonWrapper}
-						onPress={this._handleSubmit}
-					>
-						<View style={styles.button}>
-							<Text style={styles.buttonText}>
+				<ListView
+					enableEmptySections
+					dataSource={this.state.dataSource}
+
+					renderHeader={() =>
+						<View>
+							<Text style={styles.title}>
 								Search
 							</Text>
+							<View style={styles.searchRow}>
+								<TextInput
+									name="query"
+									value={query}
+									style={styles.input}
+									returnKeyType="go"
+									onChangeText={this._handleChange}
+									onSubmitEditing={this._handleSubmit}
+								/>
+								<TouchableHighlight
+									style={styles.buttonWrapper}
+									onPress={this._handleSubmit}
+								>
+									<View style={styles.button}>
+										<Text style={styles.buttonText}>
+											Search
+										</Text>
+									</View>
+								</TouchableHighlight>
+							</View>
 						</View>
-					</TouchableHighlight>
-				</View>
-				{hasResults &&
-					<Text>
-						show results
-					</Text>
-				}
-				{hasError &&
-					<Error message={`No results for ${data.query}.`} />
-				}
+					}
+
+					renderSectionHeader={(sectionData, header) => {
+						return (
+							<Text>{header}</Text>
+						);
+					}}
+
+					renderRow={(row) =>
+						<Text>{row.name}</Text>
+					}
+				/>
 			</View>
 		);
 	}
