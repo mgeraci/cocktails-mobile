@@ -13,9 +13,15 @@ export const FONT_ICON_MAP = {
 };
 
 export const SEARCH_SECTIONS = {
-	recipe_titles_res: "Recipes",
-	recipe_ingredients_res: "Recipes with matching ingredients",
-	ingredient_res: "Ingredients",
+	recipe_titles_res: "recipe_titles_res",
+	recipe_ingredients_res: "recipe_ingredients_res",
+	ingredient_res: "ingredient_res",
+};
+
+export const SEARCH_SECTION_TITLES = {
+	[SEARCH_SECTIONS.recipe_titles_res]: "Recipes",
+	[SEARCH_SECTIONS.recipe_ingredients_res]: "Recipes with matching ingredients",
+	[SEARCH_SECTIONS.ingredient_res]: "Ingredients",
 };
 
 export const FRACTIONS = {

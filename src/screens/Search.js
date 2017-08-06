@@ -9,9 +9,12 @@ import {
 import {
 	NAVIGATOR_SETTINGS,
 	SEARCH_SECTIONS,
+	SEARCH_SECTION_TITLES,
 } from "../util/consts";
+
 import { CocktailText as Text } from "../components/CocktailText";
-import ListFooter from "../components/ListFooter";
+import ListItem from "../components/ListItem";
+import Error from "../components/Error";
 import Storage from "../util/storage";
 import { api } from "../util/web";
 
@@ -46,9 +49,13 @@ class Search extends Component {
 		Object.keys(data).forEach((key) => {
 			if (SEARCH_SECTIONS[key]) {
 				if (data[key].length) {
+					data[key][data[key].length - 1].isLastChild = true;
 					res[key] = data[key];
 				} else {
-					res[key] = { empty: true };
+					res[key] = [{
+						empty: true,
+						isLastChild: true,
+					}];
 				}
 			}
 		});
@@ -81,6 +88,50 @@ class Search extends Component {
 			data,
 			dataSource: dataSource.cloneWithRowsAndSections(listViewData),
 		})
+	}
+
+	_onPress = (item, category) => {
+		switch (category) {
+			case (SEARCH_SECTIONS.recipe_titles_res): {
+				return this.props.navigator.push({
+					screen: "cocktails.Recipe",
+					passProps: {
+						name: item.name,
+						slug: item.slug,
+					}
+				});
+
+				break;
+			}
+
+			case (SEARCH_SECTIONS.recipe_ingredients_res): {
+				return this.props.navigator.push({
+					screen: "cocktails.Recipe",
+					passProps: {
+						name: item.name,
+						slug: item.slug,
+					}
+				});
+
+				break;
+			}
+
+			case (SEARCH_SECTIONS.ingredient_res): {
+				return this.props.navigator.push({
+					screen: "cocktails.Ingredient",
+					passProps: {
+						name: item.name,
+						slug: item.slug,
+					}
+				});
+
+				break;
+			}
+
+			default: {
+				return () => {};
+			}
+		}
 	}
 
 	render() {
@@ -122,14 +173,33 @@ class Search extends Component {
 					</View>
 				}
 
-				renderSectionHeader={(sectionData, category) => {
-					return (
-						<Text>{SEARCH_SECTIONS[category]}</Text>
-					);
-				}}
+				renderSectionHeader={(sectionData, category) =>
+					<View>
+						<Text style={styles.listHeader}>
+							{SEARCH_SECTION_TITLES[category]}
+						</Text>
+					</View>
+				}
 
 				renderRow={(row, category) =>
-					<Text>{row.name} {category}</Text>
+					<View>
+						{!row.empty &&
+							<ListItem
+								item={row}
+								onPress={() => {
+									this._onPress(row, category)
+								}}
+							/>
+						}
+						{row.empty &&
+							<Text style={styles.error}>
+								No results
+							</Text>
+						}
+						{row.isLastChild &&
+							<View style={styles.lastChildSpacing} />
+						}
+					</View>
 				}
 
 				renderFooter={() => <View style={styles.footer} /> }

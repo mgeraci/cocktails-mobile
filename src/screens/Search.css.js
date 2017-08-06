@@ -9,11 +9,13 @@ import {
 export default {
 	wrapper: {
 		flex: 1,
-		padding: APP_PADDING,
+		paddingLeft: APP_PADDING,
+		paddingRight: APP_PADDING,
 		backgroundColor: COLORS.purple,
 	},
 
 	title: {
+		marginTop: APP_PADDING,
 		...STYLES.TitleStyle,
 	},
 
@@ -21,6 +23,7 @@ export default {
 		flex: 1,
 		flexDirection: "row",
 		justifyContent: "center",
+		marginBottom: 30,
 		maxWidth: 400,
 	},
 
@@ -47,8 +50,24 @@ export default {
 		...STYLES.ButtonTextStyle,
 	},
 
+	listHeader: {
+		paddingTop: 14,
+		paddingBottom: 10,
+		fontSize: 22,
+		backgroundColor: COLORS.purple,
+	},
+
+	lastChildSpacing: {
+		marginBottom: 20,
+	},
+
+	error: {
+		color: COLORS.pink,
+		fontSize: 18,
+	},
+
 	footer: {
 		flex: 1,
-		height: 40,
+		height: 10,
 	}
 }
