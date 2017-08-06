@@ -144,15 +144,17 @@ class Recipe extends Component {
 								</Text>
 							</View>
 
-							<View style={[styles.bottomWrapperInner, styles.glassWrapper]}>
-								<Glass
-									style={styles.glass}
-									glass={glass.slug}
-								/>
-								<Text style={styles.bottomLabel}>
-									{capitalize(`${glass.name} glass`)}
-								</Text>
-							</View>
+							{glass &&
+								<View style={[styles.bottomWrapperInner, styles.glassWrapper]}>
+									<Glass
+										style={styles.glass}
+										glass={glass.slug}
+									/>
+									<Text style={styles.bottomLabel}>
+										{capitalize(`${glass.name} glass`)}
+									</Text>
+								</View>
+							}
 						</View>
 
 						<View style={{ width: 100, height: 30, }} />

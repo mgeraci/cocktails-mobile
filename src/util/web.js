@@ -16,7 +16,7 @@ const getApiPath = (path) => {
 		suffix = `&${API_SUFFIX}`;
 	}
 
-	return `${API_ROOTS.dev}${path}${suffix}`;
+	return `${API_ROOTS.prod}${path}${suffix}`;
 }
 
 export const api = async (_path) => {
