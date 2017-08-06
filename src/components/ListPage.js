@@ -9,6 +9,7 @@ import { api } from "../util/web";
 import Storage from "../util/storage";
 import { CocktailText as Text } from "./CocktailText";
 import ListFooter from "./ListFooter";
+import Error from "./Error";
 
 import styles from "./ListPage.css.js";
 
@@ -31,6 +32,7 @@ class ListPage extends Component {
 		}
 
 		if (data.error) {
+			this.setState({ error: true });
 			return;
 		}
 
@@ -47,7 +49,7 @@ class ListPage extends Component {
 
 	render() {
 		const { title, onPress, navigator } = this.props;
-		const { dataSource } = this.state;
+		const { dataSource, error } = this.state;
 
 		return (
 			<View style={styles.wrapper}>
@@ -72,6 +74,11 @@ class ListPage extends Component {
 						}
 						style={styles.list}
 					/>
+				}
+				{error &&
+					<View style={styles.errorWrapper}>
+						<Text>There was a problem loading {title.toLowerCase()}.</Text>
+					</View>
 				}
 			</View>
 		);

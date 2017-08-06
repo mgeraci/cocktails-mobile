@@ -75,4 +75,8 @@ export default {
 		height: QUANTITY_BUTTON_SIZE,
 		alignSelf: "center",
 	},
+
+	errorWrapper: {
+		marginTop: 30,
+	},
 };

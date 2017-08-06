@@ -19,4 +19,11 @@ export default {
 		paddingLeft: APP_PADDING,
 		paddingRight: APP_PADDING,
 	},
+
+	errorWrapper: {
+		marginTop: APP_PADDING * 3,
+		paddingLeft: APP_PADDING,
+		paddingRight: APP_PADDING,
+		alignSelf: "center",
+	}
 };

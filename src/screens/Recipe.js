@@ -15,6 +15,7 @@ import { CocktailText as Text } from "../components/CocktailText";
 import Ingredient from "../components/Ingredient";
 import RecipeQuantity from "../components/RecipeQuantity";
 import Glass from "../components/Glass";
+import Error from "../components/Error";
 
 import styles from "./Recipe.css.js";
 
@@ -43,7 +44,11 @@ class Recipe extends Component {
 		}
 
 		if (data.error) {
-			console.log("set error state");
+			this.setState({
+				isLoaded: false,
+				error: true,
+			});
+
 			return;
 		}
 
@@ -59,7 +64,10 @@ class Recipe extends Component {
 			await Storage.setRecipe(slug, data);
 			this.setState({ recipe: data });
 		} else {
-			console.log("set error state");
+			this.setState({
+				isLoaded: false,
+				error: true,
+			});
 		}
 	}
 
@@ -81,7 +89,7 @@ class Recipe extends Component {
 
 	render() {
 		const { name } = this.props;
-		const { quantity } = this.state;
+		const { quantity, error } = this.state;
 		let recipe = this.state.recipe || {};
 		let {
 			source,
@@ -148,6 +156,11 @@ class Recipe extends Component {
 						</View>
 
 						<View style={{ width: 100, height: 30, }} />
+					</View>
+				}
+				{error &&
+					<View style={styles.errorWrapper}>
+						<Error message="There was a problem loading this recipe." />
 					</View>
 				}
 			</ScrollView>
