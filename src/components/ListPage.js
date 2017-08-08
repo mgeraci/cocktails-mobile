@@ -29,6 +29,7 @@ class ListPage extends Component {
 
 		if (typeof(data) === "undefined" || data === null || !data.length) {
 			data = await fetchData();
+		} else {
 		}
 
 		if (data.error) {

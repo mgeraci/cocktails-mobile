@@ -81,11 +81,17 @@ class Login extends Component {
 		} else {
 			if (res.session_key) {
 				await Storage.setSessionKey(res.session_key);
+
+				// reset the information that could change when authenticated
+				// TODO: this should probably reset searches as well
+				await Storage.setRecipes(null);
+				await Storage.setIngredients(null);
+				await Storage.setSources(null);
 			}
 
 			await Storage.clearRecipes();
-			this.props.navigator.resetTo({
-				screen: "cocktails.Recipes",
+			this.props.navigator.switchToTab({
+				tabIndex: 0,
 			});
 		}
 	}
