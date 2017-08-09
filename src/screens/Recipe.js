@@ -133,7 +133,7 @@ class Recipe extends Component {
 						</Text>
 
 						<View style={styles.bottomWrapper}>
-							<View style={styles.bottomWrapperInner}>
+							<View style={[ styles.bottomWrapperInner, styles.quantityWrapper ]}>
 								<RecipeQuantity
 									quantity={quantity}
 									onDecrement={this._decrement}
@@ -192,7 +192,7 @@ class Recipe extends Component {
 									style={{
 										...styles.ingredientPlaceholder,
 										...styles.placeholder,
-										width: 300 + Math.random() * 20,
+										width: 260 + Math.random() * 20,
 									}}
 								/>
 							)}

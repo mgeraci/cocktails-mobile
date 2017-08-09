@@ -57,13 +57,17 @@ export default {
 		flex: 1,
 		flexDirection: "row",
 		justifyContent: "center",
+		justifyContent: "space-between",
 	},
 
 	bottomWrapperInner: {
 		flexDirection: "column",
 		justifyContent: "space-between",
-		width: QUANTITY_BUTTON_SIZE * 2 + QUANTITY_BUTTON_SIZE * 1.2,
 		height: QUANTITY_BUTTON_SIZE * 1.75,
+	},
+
+	quantityWrapper: {
+		width: QUANTITY_BUTTON_SIZE * 2 + QUANTITY_BUTTON_SIZE * 1.2,
 	},
 
 	bottomLabel: {
@@ -74,8 +78,7 @@ export default {
 	},
 
 	glassWrapper: {
-		width: QUANTITY_BUTTON_SIZE * 2,
-		marginLeft: 45,
+		width: 100,
 	},
 
 	glass: {
