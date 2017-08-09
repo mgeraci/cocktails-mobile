@@ -93,7 +93,9 @@ function _startApp() {
 		tabsStyle: {
 			tabBarBackgroundColor: COLORS.purple,
 			tabBarButtonColor: COLORS.tan,
+			tabBarLabelColor: COLORS.tan,
 			tabBarSelectedButtonColor: COLORS.brown,
+			tabBarSelectedLabelColor: COLORS.brown,
 			tabFontFamily: FONT_FAMILY,
 		},
 	});
