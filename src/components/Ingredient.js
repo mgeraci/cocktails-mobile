@@ -56,20 +56,20 @@ const Ingredient = (props) => {
 		<View style={styles.wrapper}>
 			<Text style={styles.text}>
 				{amount_num > 0 &&
-					<Text>
+					<Text style={styles.text}>
 						{formatAmount(currentFraction)}
 						{" "}
 					</Text>
 				}
 				{unit && !unit.after_ingredient &&
-					<Text>
+					<Text style={styles.text}>
 						{currentUnit}
 						{" "}
 					</Text>
 				}
 				{ingredient.ingredient.name}
 				{unit && unit.after_ingredient &&
-					<Text>
+					<Text style={styles.text}>
 						{" "}
 						{currentUnit}
 					</Text>
