@@ -6,6 +6,7 @@ import {
 } from "react-native";
 
 import { CocktailText as Text } from "./CocktailText";
+import { COLORS } from "../util/style_consts";
 
 import styles from "./RecipeQuantity.css.js";
 
@@ -16,6 +17,7 @@ const RecipeQuantity = (props) => {
 		<View style={styles.wrapper}>
 			<TouchableHighlight
 				onPress={onDecrement}
+				underlayColor={COLORS.brownDark}
 				style={[styles.buttonWrapper, styles.buttonWrapperLeft]}
 			>
 				<View>
@@ -31,6 +33,7 @@ const RecipeQuantity = (props) => {
 
 			<TouchableHighlight
 				onPress={onIncrement}
+				underlayColor={COLORS.brownDark}
 				style={[styles.buttonWrapper, styles.buttonWrapperRight]}
 			>
 				<View>

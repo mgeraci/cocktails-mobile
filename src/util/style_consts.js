@@ -3,8 +3,12 @@ export const FONT_FAMILY_LIGHT = "AvenirLTStd-Light";
 
 export const COLORS = {
 	purple: "#4a3d4c",
-	pink: "#8a504d",
+	purpleDark: "#362b38",
+
 	brown: "#b57226",
+	brownDark: "#90591b",
+
+	pink: "#8a504d",
 	tan: "#bf9f6b",
 }
 

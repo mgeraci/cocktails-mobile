@@ -1,7 +1,7 @@
 export default {
 	button: {
-		paddingTop: 4,
-		paddingBottom: 8,
+		paddingTop: 8,
+		paddingBottom: 4,
 		fontSize: 18,
 	},
 };

@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import { CocktailText as Text } from "./CocktailText";
+import { COLORS } from "../util/style_consts";
 
 import styles from "./ListItem.css.js";
 
@@ -19,6 +20,7 @@ const ListItem = (props) => {
 	return (
 		<TouchableHighlight
 			onPress={_handlePress}
+			underlayColor={COLORS.purpleDark}
 		>
 			<View>
 				<Text style={styles.button}>
