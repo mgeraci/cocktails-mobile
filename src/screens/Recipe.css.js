@@ -26,6 +26,11 @@ export default {
 		textAlign: "center",
 	},
 
+	sourcePlaceholder: {
+		width: 100,
+		alignSelf: "center",
+	},
+
 	decoration: {
 		marginTop: 26,
 		width: 70,
@@ -40,6 +45,9 @@ export default {
 	directions: {
 		marginTop: 28,
 		marginBottom: 28,
+	},
+
+	directionsFont: {
 		fontFamily: FONT_FAMILY_LIGHT,
 		fontSize: 18,
 		lineHeight: 24,
@@ -78,5 +86,17 @@ export default {
 
 	errorWrapper: {
 		marginTop: 30,
+	},
+
+	placeholder: {
+		backgroundColor: COLORS.tan,
+		opacity: 0.1,
+	},
+
+	ingredientPlaceholder: {
+		width: 200,
+		height: 16,
+		marginTop: 8,
+		marginBottom: 6,
 	},
 };

@@ -128,7 +128,7 @@ class Recipe extends Component {
 							)}
 						</View>
 
-						<Text style={styles.directions}>
+						<Text style={[ styles.directions, styles.directionsFont ]}>
 							{directions}
 						</Text>
 
@@ -145,7 +145,7 @@ class Recipe extends Component {
 							</View>
 
 							{glass &&
-								<View style={[styles.bottomWrapperInner, styles.glassWrapper]}>
+								<View style={[ styles.bottomWrapperInner, styles.glassWrapper ]}>
 									<Glass
 										style={styles.glass}
 										glass={glass.slug}
@@ -160,6 +160,46 @@ class Recipe extends Component {
 						<View style={{ width: 100, height: 30, }} />
 					</View>
 				}
+
+				{!isLoaded && !error &&
+					<View>
+						<Text style={[ styles.source, styles.placeholder, styles.sourcePlaceholder ]}>
+							by
+						</Text>
+
+						<Image
+							style={styles.decoration}
+							source={require("../images/witness.png")}
+						/>
+
+						<View style={styles.ingredients}>
+							{[...Array(5).keys()].map((i) =>
+								<View
+									key={i}
+									style={{
+										...styles.ingredientPlaceholder,
+										...styles.placeholder,
+										width: 80 + Math.random() * 80,
+									}}
+								/>
+							)}
+						</View>
+
+						<View style={styles.directions}>
+							{[...Array(2).keys()].map((i) =>
+								<View
+									key={i}
+									style={{
+										...styles.ingredientPlaceholder,
+										...styles.placeholder,
+										width: 300 + Math.random() * 20,
+									}}
+								/>
+							)}
+						</View>
+					</View>
+				}
+
 				{error &&
 					<View style={styles.errorWrapper}>
 						<Error message="There was a problem loading this recipe." />
