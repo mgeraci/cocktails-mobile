@@ -38,7 +38,7 @@
   // *** DON'T MISS: THIS IS HOW WE BOOTSTRAP *****
   // **********************************************
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  self.window.backgroundColor = [UIColor whiteColor];
+  self.window.backgroundColor = [UIColor colorWithRed:0.29 green:0.24 blue:0.30 alpha:1.0];
   [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation];
   
   /*
