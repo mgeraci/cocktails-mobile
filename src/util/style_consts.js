@@ -42,9 +42,8 @@ export const STYLES = {
 	ButtonStyle: {
 		backgroundColor: COLORS.brown,
 		borderRadius: BR,
-		display: "flex",
+		paddingTop: 10,
 		alignItems: "center",
-		justifyContent: "center",
 	},
 
 	ButtonTextStyle: {
