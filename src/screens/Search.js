@@ -3,6 +3,7 @@ import {
 	View,
 	ListView,
 	TextInput,
+	Image,
 	TouchableHighlight,
 } from "react-native";
 
@@ -70,6 +71,8 @@ class Search extends Component {
 			return;
 		}
 
+		this.setState({ isSearching: true });
+
 		// try getting the search from storage
 		const storedSearch = await Storage.getSearch(query);
 		let data;
@@ -87,6 +90,7 @@ class Search extends Component {
 		this.setState({
 			data,
 			dataSource: dataSource.cloneWithRowsAndSections(listViewData),
+			isSearching: false,
 		})
 	}
 
@@ -135,7 +139,7 @@ class Search extends Component {
 	}
 
 	render() {
-		const { data, query } = this.state;
+		const { data, query, isSearching } = this.state;
 		const hasResults = data && !data.no_results;
 		const hasError = data && !!data.no_results;
 
@@ -155,6 +159,7 @@ class Search extends Component {
 								name="query"
 								value={query}
 								style={styles.input}
+								placeholder="e.g., Gin or Manhattan"
 								returnKeyType="go"
 								onChangeText={this._handleChange}
 								onSubmitEditing={this._handleSubmit}
@@ -170,6 +175,12 @@ class Search extends Component {
 								</View>
 							</TouchableHighlight>
 						</View>
+						{isSearching &&
+							<Image
+								style={styles.spinner}
+								source={require("../images/spinner.gif")}
+							/>
+						}
 					</View>
 				}
 

@@ -42,12 +42,19 @@ export default {
 
 	button: {
 		...STYLES.ButtonStyle,
-		width: 100,
+		width: 80,
 		height: INPUT_HEIGHT,
 	},
 
 	buttonText: {
 		...STYLES.ButtonTextStyle,
+	},
+
+	spinner: {
+		width: 20,
+		height: 20,
+		marginTop: 190,
+		alignSelf: "center",
 	},
 
 	listHeader: {
