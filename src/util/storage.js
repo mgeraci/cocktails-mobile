@@ -112,7 +112,24 @@ async function getPrefixedItem({ key, prefix }) {
 	return data;
 };
 
+async function clearItem(key) {
+	if (!storageKeys[key]) {
+		return error;
+	}
+
+	try {
+		await AsyncStorage.removeItem(getKey(key));
+	} catch (e) {
+		return e;
+	}
+}
+
 export default {
+
+
+	// session
+	// --------------------------------------------------------------------------
+
 	setSessionKey: async (sessionKey) => {
 		try {
 			await AsyncStorage.setItem(
@@ -138,6 +155,10 @@ export default {
 		}
 	},
 
+
+	// recipes
+	// --------------------------------------------------------------------------
+
 	getRecipes: async () => {
 		return await getItem(storageKeys.recipes);
 	},
@@ -147,12 +168,12 @@ export default {
 	},
 
 	clearRecipes: async () => {
-		try {
-			await AsyncStorage.removeItem(getKey(storageKeys.recipes));
-		} catch (e) {
-			return e;
-		}
+		return await clearItem(storageKeys.recipes);
 	},
+
+
+	// recipe
+	// --------------------------------------------------------------------------
 
 	getRecipe: async (recipeTitle) => {
 		return await getPrefixedItem({
@@ -169,6 +190,10 @@ export default {
 		});
 	},
 
+
+	// ingredients
+	// --------------------------------------------------------------------------
+
 	getIngredients: async () => {
 		return await getItem(storageKeys.ingredients);
 	},
@@ -177,6 +202,14 @@ export default {
 		return await setItem(storageKeys.ingredients, value);
 	},
 
+	clearIngredients: async () => {
+		return await clearItem(storageKeys.ingredients);
+	},
+
+
+	// sources
+	// --------------------------------------------------------------------------
+
 	getSources: async () => {
 		return await getItem(storageKeys.sources);
 	},
@@ -184,6 +217,14 @@ export default {
 	setSources: async (value) => {
 		return await setItem(storageKeys.sources, value);
 	},
+
+	clearSources: async () => {
+		return await clearItem(storageKeys.sources);
+	},
+
+
+	// search
+	// --------------------------------------------------------------------------
 
 	setSearch: async (query, results) => {
 		return await setPrefixedItem({
@@ -201,6 +242,6 @@ export default {
 	},
 
 	clearSearch: async () => {
-		return await setItem(storageKeys.search, []);
-	}
+		return await clearItem(storageKeys.search);
+	},
 };

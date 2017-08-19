@@ -84,13 +84,10 @@ class Login extends Component {
 			}
 
 			// reset the information that could change when authenticated
-			await Storage.setRecipes([]);
-			await Storage.setIngredients([]);
-			await Storage.setSources([]);
+			await Storage.clearIngredients();
+			await Storage.clearSources();
 			await Storage.clearSearch();
 			await Storage.clearRecipes();
-
-			const checkStorage = await Storage.getSources();
 
 			this.props.navigator.switchToTab({
 				tabIndex: 0,

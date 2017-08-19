@@ -27,7 +27,10 @@ class ListPage extends Component {
 
 		let data = await getStoredData();
 
-		if (typeof(data) === "undefined" || data === null || !data.length) {
+		if (
+			(typeof(data) === "undefined" || data === null) ||
+			(data.error || !data.length)
+		) {
 			data = await fetchData();
 		}
 
