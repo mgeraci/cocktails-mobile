@@ -1,6 +1,10 @@
+import { COLORS } from "./style_consts";
+
 export const NAVIGATOR_SETTINGS = {
 	navBarHidden: true,
 	statusBarHidden: true,
+	screenBackgroundColor: COLORS.purple,
+	orientation: "portrait",
 };
 
 export const STORAGE_KEY = "COCKTAILS_LOCALSTORAGE";
