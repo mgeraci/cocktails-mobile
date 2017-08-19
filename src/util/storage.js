@@ -143,7 +143,7 @@ export default {
 	},
 
 	setRecipes: async (value) => {
-		setItem(storageKeys.recipes, value);
+		return await setItem(storageKeys.recipes, value);
 	},
 
 	clearRecipes: async () => {
@@ -174,7 +174,7 @@ export default {
 	},
 
 	setIngredients: async (value) => {
-		setItem(storageKeys.ingredients, value);
+		return await setItem(storageKeys.ingredients, value);
 	},
 
 	getSources: async () => {
@@ -182,7 +182,7 @@ export default {
 	},
 
 	setSources: async (value) => {
-		setItem(storageKeys.sources, value);
+		return await setItem(storageKeys.sources, value);
 	},
 
 	setSearch: async (query, results) => {
@@ -199,4 +199,8 @@ export default {
 			prefix: query,
 		});
 	},
+
+	clearSearch: async () => {
+		return await setItem(storageKeys.search, []);
+	}
 };

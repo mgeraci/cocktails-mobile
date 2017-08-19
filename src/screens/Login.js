@@ -81,15 +81,17 @@ class Login extends Component {
 		} else {
 			if (res.session_key) {
 				await Storage.setSessionKey(res.session_key);
-
-				// reset the information that could change when authenticated
-				// TODO: this should probably reset searches as well
-				await Storage.setRecipes(null);
-				await Storage.setIngredients(null);
-				await Storage.setSources(null);
 			}
 
+			// reset the information that could change when authenticated
+			await Storage.setRecipes([]);
+			await Storage.setIngredients([]);
+			await Storage.setSources([]);
+			await Storage.clearSearch();
 			await Storage.clearRecipes();
+
+			const checkStorage = await Storage.getSources();
+
 			this.props.navigator.switchToTab({
 				tabIndex: 0,
 			});
