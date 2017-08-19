@@ -61,6 +61,7 @@ async function setItem(key, _value) {
 	}
 };
 
+// e.g., key: "search", prefix: "gin", value: search results for "gin"
 async function setPrefixedItem({ key, prefix, value }) {
 	if (!storageKeys[key]) {
 		return error;
@@ -70,8 +71,18 @@ async function setPrefixedItem({ key, prefix, value }) {
 		return error;
 	}
 
-	const _key = getPrefixKey(storageKeys[key], prefix);
-	const _value = JSON.stringify(value);
+	let data = await getItem(key);
+
+	// if this is the first load, or if there's a problem with the async call,
+	// default to an epty object
+	if (data.error) {
+		data = {};
+	}
+
+	data[prefix] = value;
+
+	const _key = getKey(key);
+	const _value = JSON.stringify(data);
 
 	try {
 		await AsyncStorage.setItem(
@@ -83,26 +94,22 @@ async function setPrefixedItem({ key, prefix, value }) {
 	}
 };
 
+// e.g., key: "search", prefix: "gin"
 async function getPrefixedItem({ key, prefix }) {
 	if (!storageKeys[key]) {
 		return error;
 	}
 
-	const _key = getPrefixKey(storageKeys[key], prefix);
+	let data = await getItem(key);
 
-	try {
-		let data = await AsyncStorage.getItem(_key);
-
-		if (typeof data !== "string") {
-			return error;
-		}
-
-		data = JSON.parse(data);
-
-		return data;
-	} catch (e) {
-		return error;
+	// if this is the first load, or if there's a problem with the async call,
+	// default to an epty object
+	if (data.error) {
+		data = {};
 	}
+
+	data = data[prefix] || error;
+	return data;
 };
 
 export default {

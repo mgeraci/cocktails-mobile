@@ -65,13 +65,14 @@ class Search extends Component {
 	}
 
 	_handleSubmit = async () => {
-		const { query } = this.state;
+		let { query } = this.state;
 
 		if (query === null || query === "") {
 			return;
 		}
 
 		this.setState({ isSearching: true });
+		query = query.toLowerCase();
 
 		// try getting the search from storage
 		const storedSearch = await Storage.getSearch(query);
