@@ -71,8 +71,13 @@ class Search extends Component {
 			return;
 		}
 
-		this.setState({ isSearching: true });
-		query = query.toLowerCase();
+		this.setState({
+			isSearching: true,
+			data: [],
+			dataSource: this._generateDataSource(),
+		});
+
+		query = query.toLowerCase().replace(/^\s+|\s+$/g,'');
 
 		// try getting the search from storage
 		const storedSearch = await Storage.getSearch(query);
