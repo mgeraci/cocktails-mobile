@@ -9,14 +9,14 @@ import {
 import { FRACTIONS } from "../util/consts";
 import { CocktailText as Text } from "./CocktailText";
 
-import styles from "./Ingredient.css.js";
+import styles from "./RecipeIngredient.css.js";
 
 const fractionLookup = {
 };
 
 function formatAmount(fraction) {
-	const numeratorLookup = fraction.numerator % fraction.denominator;
 	const { numerator, denominator } = fraction;
+	const numeratorLookup = numerator % denominator;
 	const int = Math.floor(numerator / denominator);
 	let fractionCharacter;
 
@@ -47,7 +47,7 @@ const Ingredient = (props) => {
 	if (unit) {
 		currentUnit = unit.name;
 
-		if (quantity > 1) {
+		if (currentFraction.numerator / currentFraction.denominator > 1) {
 			currentUnit = unit.plural;
 		}
 	}

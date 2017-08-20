@@ -12,7 +12,7 @@ import { capitalize } from "../util/helpers";
 import Storage from "../util/storage";
 
 import { CocktailText as Text } from "../components/CocktailText";
-import Ingredient from "../components/Ingredient";
+import RecipeIngredient from "../components/RecipeIngredient";
 import RecipeQuantity from "../components/RecipeQuantity";
 import Glass from "../components/Glass";
 import Error from "../components/Error";
@@ -120,7 +120,7 @@ class Recipe extends Component {
 
 						<View style={styles.ingredients}>
 							{ingredients.map((ingredient, i) =>
-								<Ingredient
+								<RecipeIngredient
 									key={i}
 									ingredient={ingredient}
 									quantity={quantity}
