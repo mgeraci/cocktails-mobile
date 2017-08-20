@@ -4,7 +4,6 @@ import { STORAGE_KEY } from "./consts";
 const error = { error: true };
 
 const storageKeys = {
-	sessionKey: "sessionKey",
 	recipes: "recipes",
 	recipe: "recipe",
 	ingredients: "ingredients",
@@ -125,35 +124,6 @@ async function clearItem(key) {
 }
 
 export default {
-
-
-	// session
-	// --------------------------------------------------------------------------
-
-	setSessionKey: async (sessionKey) => {
-		try {
-			await AsyncStorage.setItem(
-				getKey(storageKeys.sessionKey),
-				sessionKey,
-			);
-		} catch (e) {
-			return error;
-		}
-	},
-
-	getSessionKey: async () => {
-		try {
-			let data = await AsyncStorage.getItem(getKey(storageKeys.sessionKey));
-
-			if (typeof data !== "string") {
-				return error;
-			}
-
-			return data;
-		} catch (e) {
-			return error;
-		}
-	},
 
 
 	// recipes
