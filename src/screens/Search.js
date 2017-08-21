@@ -165,7 +165,7 @@ class Search extends Component {
 								name="query"
 								value={query}
 								style={styles.input}
-								placeholder="e.g., gin, manhattan"
+								placeholder="e.g., Gin or Manhattan"
 								returnKeyType="go"
 								onChangeText={this._handleChange}
 								onSubmitEditing={this._handleSubmit}
@@ -223,7 +223,7 @@ class Search extends Component {
 			/>
 		);
 	}
-}
+};
 
 Search.navigatorStyle = NAVIGATOR_SETTINGS;
 
